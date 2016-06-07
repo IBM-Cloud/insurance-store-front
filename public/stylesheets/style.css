@@ -1,0 +1,135 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+body,
+html {
+    background-color: #F3F1EB;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #ffffff;
+}
+
+.content {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column;
+    flex-flow: column;
+    max-width: 1024px;
+    height: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.banner {
+    height: 60px;
+    background: white;
+    margin: 20px;
+    min-height: 60px;
+    margin-top: 30px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    min-height: 60px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    color: #555;
+    justify-content: space-between;
+}
+
+.title {
+    /* height: 60px; */
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.1px;
+    /* background: #2a2a2a; */
+    /* min-height: 40px; */
+    /* margin-top: 20px; */
+    display: flex;
+    padding-left: 20px;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pic {
+    width: 200px;
+}
+
+.tile {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    width: 470px;
+    height: 380px;
+    min-width: 470px;
+    min-height: 380px;
+    margin: 20px;
+    color: #555;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-width: 200px;
+    color: #555;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 280px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.description {
+    max-height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    min-height: 100px;
+    margin: 20px;
+    font-size: 14px;
+}
+
+.cost {
+    min-height: 30px;
+    font-size: 14px;
+}
+
+.style {
+    min-height: 100px;
+}
+
+.name {
+    letter-spacing: 1px;
+    min-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-width: 270px;
+    align-items: center;
+    border-left: 1px solid #ddd;
+}
