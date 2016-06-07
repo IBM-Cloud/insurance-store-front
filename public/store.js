@@ -9,7 +9,6 @@
      xmlhttp.send();
  }
 
-
  function buildItem(item) {
 
      var html = '';
@@ -30,28 +29,17 @@
 
  function setup() {
 
-     console.log('setup');
-
-
-
      get('./data/sample.json', function (items) {
 
          var anchor = document.getElementById('items');
 
          items.forEach(function (item) {
-             console.log(item);
-
              var product = document.createElement('div');
              product.className = 'tile';
              product.innerHTML = buildItem(item);
-
              anchor.appendChild(product);
-
-
-
          });
      })
  }
-
 
  window.onload = setup;
