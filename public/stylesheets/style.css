@@ -72,11 +72,11 @@ html {
     flex-direction: row;
     background: white;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-    width: 470px;
-    height: 380px;
-    min-width: 470px;
-    min-height: 380px;
-    margin: 20px;
+    width: 450px;
+    height: 340px;
+    min-width: 450px;
+    min-height: 340px;
+    margin: 25px;
     color: #555;
 }
 
@@ -129,7 +129,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    min-width: 270px;
+    min-width: 250px;
     align-items: center;
     border-left: 1px solid #ddd;
 }
