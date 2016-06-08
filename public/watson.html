@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/slider.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 </head>
 
@@ -30,26 +31,33 @@
             </header>
             <section class="layout">
                 <!-- primary section -->
-                <div class="input">
-                    <div class="instructions">Select criteria for your travel insurance</div>
+                <div id="input" class="input">
+
                     <div id="elements" class="elements">
                     </div>
                 </div>
-                <button id="process" class="quote" onclick="process()">Process selections</button>
-                <div class="output">
-
+                <div id="instructions" class="instructions">Select some priorities for your travel insurance</div>
+                <button id="process" class="quote" onclick="process()">Evaluate</button>
+                <div id="filter" class="filter">
+                </div>
+                <div id="output" class="output">
+                    <div class="radar"></div>
+                    <div class="policies"></div>
                 </div>
 
 
-                <!-- div class=" json-respond ">
+        </div>
+
+
+        <!-- div class=" json-respond ">
                             
 
 
                             </div -->
 
-            </section>
-            <!-- layout section -->
-        </div>
+        </section>
+        <!-- layout section -->
+    </div>
     </div>
 
     <footer>
