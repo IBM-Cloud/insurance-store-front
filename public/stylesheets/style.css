@@ -1,135 +1,565 @@
-/* style.css
- * This file provides css styles.
- */
-
 body,
 html {
-    background-color: #F3F1EB;
+    background-color: #fff;
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    color: #ffffff;
+    font-family: 'Open Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #12aaeb;
+    /*    -webkit-font-smoothing: antialiased;*/
 }
 
-.content {
-    display: -webkit-flex;
+.container {
     display: flex;
-    -webkit-flex-flow: column;
-    flex-flow: column;
-    max-width: 1024px;
-    height: 100%;
-    margin: auto;
-    margin-bottom: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+.outline {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    flex-direction: column;
+    width: 800px;
 }
 
 .banner {
-    height: 60px;
-    background: white;
-    margin: 20px;
-    min-height: 60px;
-    margin-top: 30px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-    min-height: 60px;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #e7f6fd;
+    padding: 30px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    margin-top: 40px;
+    border-radius: 5px;
+}
+
+.titleArea {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    flex: 2 0 0;
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
-    color: #555;
-    justify-content: space-between;
 }
 
-.title {
-    /* height: 60px; */
-    font-size: 14px;
+.logo {}
+
+a {
+    text-decoration: none;
     font-weight: bold;
-    letter-spacing: 1.1px;
-    /* background: #2a2a2a; */
-    /* min-height: 40px; */
-    /* margin-top: 20px; */
-    display: flex;
-    padding-left: 20px;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
+    color: #12aaeb;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-bottom: 1px solid #c8e7e0;
+    padding-bottom: 1px;
 }
 
-.items {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.pic {
-    width: 200px;
-}
-
-.tile {
-    display: flex;
-    flex-direction: row;
-    background: white;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-    width: 450px;
-    height: 340px;
-    min-width: 450px;
-    min-height: 340px;
-    margin: 25px;
-    color: #555;
-}
-
-.info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    min-width: 200px;
-    color: #555;
-}
-
-.meta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 280px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.description {
-    max-height: 100px;
-    min-height: 100px;
-    max-height: 100px;
-    min-height: 100px;
-    margin: 20px;
-    font-size: 14px;
-}
-
-.cost {
-    min-height: 30px;
-    font-size: 14px;
-}
-
-.style {
-    min-height: 100px;
+.logoImage {
+    height: 46px;
 }
 
 .name {
-    letter-spacing: 1px;
-    min-height: 30px;
-    font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 22px;
+    margin-left: 10px;
 }
 
-.product {
+.loginArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.menu {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.fb {}
+
+.welcome {
+    font-size: 14px;
+    margin: 20px;
+    /* background: #f1f5f8; */
+    padding: 20px;
+    border-radius: 5px;
+    color: #597a96;
+}
+
+
+}
+.quote {
+    margin: 20px;
+}
+.plan {
+    font-size: 12px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    color: #597a96;
+    border: 1px dotted #8ad3f3;
+}
+.welcomeText {
+    font-size: 16px;
+    margin: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+    color: #225282;
+    font-weight: bold;
+    border: 1px solid #c8e7e0;
+}
+.welcomeText span {
+    color: #c8e7e0;
+}
+.carInsurance {
+    margin-bottom: 100px;
+    width: 100%;
+    float: left;
+}
+.insuranceTypeHeading {
+    font-size: 18px;
+    margin: -21px;
+    background: #c8e7e0;
+    padding: 10px 20px;
+    color: black;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+.userTypeHeading {
+    font-size: 18px;
+    padding: 10px 10px;
+    color: #225282;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+.insuranceLeftList {
+    margin: 0px;
+    padding: 0px;
+    width: 48%;
+    margin-right: 4%;
+    float: left;
+    margin-top: 10px;
+    background: #225282;
+}
+.ui-userInfo {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+.insuranceRightList {
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    float: right;
+    text-transform: uppercase;
+}
+.insuranceLeftList li {
+    list-style: none;
+    padding: 15px;
+    background: #225282;
+    font-size: 12px;
+    color: white;
+    font-weight: normal;
+}
+.ui-userInfo li {
+    list-style: none;
+    padding: 10px 15px;
+    /* background: #225282; */
+    
+    font-size: 14px;
+    color: #225282;
+    font-weight: normal;
+}
+.address {
+    height: 72px;
+}
+.edit_account_details a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #225282;
+    border: 1px solid #9DB8D5;
+    padding: 5px 11px;
+    border-radius: 3px;
+    background: #FFFFFF;
+}
+.insuranceLeftList li span {
+    font-weight: bold;
+    color: black;
+    font-size: 13px;
+    padding-left: 5px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    background: white;
+    width: 140px;
+    float: right;
+    text-align: center;
+}
+.ui-userInfo li span {
+    font-weight: bold;
+    color: black;
+    font-size: 13px;
+    padding-left: 5px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    background: white;
+    width: 70%;
+    float: right;
+    text-align: left;
+    opacity: 0.7;
+}
+.ui-userInfo ul {
+    padding: 0px;
+}
+.insuranceRightList li {
+    list-style: none;
+    padding: 10px;
+    background: #547EAA;
+    margin: 10px 0px;
+    font-size: 14px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border-radius: 2px;
+}
+.insuranceRightList li a {
+    color: #c8e7e0;
+}
+.insuranceRightList li a:hover {
+    color: white;
+}
+.homeInsurance {
+    margin-bottom: 40px;
+    width: 100%;
+    float: left;
+}
+.healthInsurance {
+    margin-bottom: 40px;
+    width: 100%;
+    float: left;
+}
+.userInsurance {
+    margin-bottom: 40px;
+    width: 100%;
+    float: left;
+}
+.healthInsurance p,
+.homeInsurance p,
+.carInsurance p,
+.userInsurance p {
+    color: #225282;
+}
+.github {
+    font-size: 16px;
+    margin: 36px;
+    margin-top: 50px;
+    /* background: #f6fbf9; */
+    
+    padding: 20px;
+    border-radius: 4px;
+    /* border: 1px solid #c8e7e0; */
+    
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+.tiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*    margin-top: 40px;*/
+    
+    margin-bottom: 40px;
+}
+.tileImage {
+    height: 80px;
+}
+.tile {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 200px;
+    height: 230px;
+    border-radius: 5px;
+    border: 1px dashed #12aaeb;
+    margin: 0px;
+    background: white;
+    /*    box-shadow: 0 0.125em 0.5em 0 rgba(4, 49, 64, 0.1);*/
+}
+.homePage .tile {
+    margin: 30px;
+}
+.tiles a {
+    border: none;
+    margin: 30px;
+}
+.timeImage {}
+.label {
+    text-align: center;
+    margin: 20px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 12px;
+}
+.call {
+    height: 40px;
+    margin: 40px;
+    margin-bottom: 60px;
+    border-radius: 5px;
+    color: #597a96;
+    display: flex;
+    flex-direction: row;
     align-content: center;
-    min-width: 250px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    justify-content: space-around;
+    padding-left: 50px;
+    padding-right: 50px;
     align-items: center;
-    border-left: 1px solid #ddd;
+    /* border: 1px dotted #12aaeb; */
+    /* color: black; */
+    
+    background: #f5fbfe;
+    font-size: 14px;
+}
+.hole {
+    background: #12aaeb;
+    height: 10px;
+    width: 10px;
+    /* margin: 10px; */
+    
+    margin-top: 20px;
+    border-radius: 10px;
+    align-self: center;
+}
+.hero {
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 36px;
+    margin-right: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: #fcfefe;
+    padding: 20px;
+    border-radius: 4px;
+    color: white;
+    border: 1px dashed #e7f6fd;
+    padding: 50px;
+}
+.json-respond {
+    border-radius: 5px;
+    border: 1px solid #a2b1c1;
+    margin-top: 20px;
+    margin-left: 36px;
+    margin-right: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+.heroText {
+    width: 360px;
+    padding: 20px;
+    padding-left: 80px;
+    color: #597a96;
+    font-size: 14px;
+}
+.botImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 140px;
+    margin: -10px;
+}
+.homePage .member {
+    height: 150px;
+}
+.member .welcome {
+    height: 450px;
+    border: 1px dotted #c8e7e0;
+}
+.health .welcome {
+    height: 1100px;
+    border: 1px dotted #c8e7e0;
+}
+.auto .welcome {
+    height: 1200px;
+    border: 1px dotted #c8e7e0;
+}
+.home .welcome {
+    height: 1100px;
+    border: 1px dotted #c8e7e0;
+}
+.insuranceIcons {
+    float: left;
+    width: 100%;
+}
+.insuranceIcons h3 {
+    text-align: center;
+}
+.insuranceIcons h3 span {
+    color: #225282;
+}
+footer {}
+.glow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100px;
+    width: 70px;
+    border-radius: 100px;
+    padding: 20px;
+    align-self: center;
+}
+.ui-insuranceLeftList {
+    margin: 0px;
+    padding: 0px;
+}
+.benefits {
+    padding: 15px;
+    color: white;
+}
+.benefits h3 > span {
+    width: 100%;
+    border-bottom: 1px dotted white;
+    float: left;
+    margin-bottom: 15px;
+}
+.benefits .benefits-heading {
+    color: #c8e7e0;
+    font-size: 12px;
+    font-weight: bold;
+}
+.benefits p {
+    color: white;
+    font-size: 12px;
+}
+.about {
+    display: flex;
+    padding: 30px;
+    font-size: 14px;
+    border: 1px dotted #c8e7e0;
+    border-radius: 4px;
+}
+.cloudvideo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    border: display: flex;
+    padding: 30px;
+    font-size: 14px;
+    border: 1px dotted #c8e7e0;
+    border-radius: 4px;
+}
+.home {
+    text-decoration: none;
+    font-weight: bold;
+    color: #225282;
+    border-bottom: none;
+    padding-bottom: 1px;
+}
+.input {
+    margin-top: 40px;
+}
+.instructions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 50px;
+    margin-bottom: 20px;
+    padding: 20px;
+    /*    color: #597a96;*/
+    
+    border: 1px dotted #8ad3f3;
+    border-radius: 5px;
+}
+.criterion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+.criteria {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    border: 1px dotted #c8e7e0;
+    margin: 20px;
+    background: white;
+    align-content: center;
+    align-items: center;
+    color: #597a96;
+    /*    box-shadow: 0 0.125em 0.5em 0 rgba(4, 49, 64, 0.1);*/
+}
+.separator {
+    border-bottom: 1px dotted #8ad3f3;
+}
+.split {
+    display: flex;
+    flex-direction: row;
+}
+.policy {
+    width: 500px;
+    margin-top: 20px;
+}
+.interact {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    width: 300px;
+    max-width: 300px;
+    height: 300px;
+    max-height: 300px;
+    margin: 20px;
+    margin-top: 40px;
+    min-width: 300px;
+    border-radius: 5px;
+    color: #597a96;
+    border: 1px dotted #8ad3f3;
+}
+.quote {
+    background: #a0dcf7;
+    border: none;
+    color: #225282;
+    border-radius: 5px;
+    width: 140px;
+    font-size: 14px;
+    height: 40px;
+    margin: 20px;
+}
+.question {
+    font-size: 20px;
+    margin: 20px;
+    font-weight: bold;
+}
+.quoteImage {
+    height: 100px;
 }

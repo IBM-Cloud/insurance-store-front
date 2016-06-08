@@ -3,6 +3,6 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: online-store-front
-  host: online-store-front
+  name: insurance-store-front
+  host: insurance-store-front
   disk_quota: 1024M

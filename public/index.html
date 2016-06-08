@@ -1,27 +1,123 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Online Store - Microservice Demo</title>
+    <title>Cloud Insurance Co - the one with the AI Bot</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/fonts/octicons/octicons.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-    <div class="content">
-        <div class="banner">
-            <div class="welcome">
-                <!-- img class="logo" src="images/logo.png"-->
-                <label id="title" class="title">contempo - modern office supplies</label>
-            </div>
-            <!-- a id="about" class="about" href="about.html">About</a -->
-        </div>
-        <div id="items" class="items">
+<body class="homePage">
+
+    <div class="container">
+        <div class="outline">
+            <header>
+                <div class="banner">
+                    <div class="titleArea">
+
+                        <div class="logo"><img class="logoImage" src="images/wash/cloud.svg"></div>
+                        <div class="name"><a class="home" href=".">Cloud Insurance Co.</a></div>
+
+                    </div>
+                    <div class="loginArea">
+                        <div class="menu"><a href="./about">ABOUT</a></div>
+                        <div class="menu"><a href="./about">LOGIN</a></div>
+                        <div id="status"></div>
+                    </div>
+                </div>
+            </header>
+            <section class="layout">
+                <div class="primary">
+                    <div id="fb-root" class=" fb_reset">
+                        <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                            <div>
+                                <iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="http://staticxx.facebook.com/connect/xd_arbiter.php?version=42#channel=f2e04889486ef8&amp;origin=http%3A%2F%2Fcloudco.mybluemix.net" style="border: none;"></iframe>
+                                <iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://staticxx.facebook.com/connect/xd_arbiter.php?version=42#channel=f2e04889486ef8&amp;origin=http%3A%2F%2Fcloudco.mybluemix.net" style="border: none;"></iframe>
+                            </div>
+                        </div>
+                        <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="welcome"><strong>Cloud Insurance Co.</strong> is a conceptual insurance site built using <a href="http://bluemix.net">IBM Bluemix</a> and <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/">IBM Watson</a>.
+                        <p>None of the policies are real ... the site exists to experiment and showcase cognitive and cloud computing ideas in the context of insurance.</p>
+
+                    </div>
+
+                </div>
+                <!-- primary section -->
+
+                <aside class="secondary">
+                    <div class="tiles">
+                        <div class="tile">
+                            <!--                            <div class="hole"></div>-->
+                            <div class="glow">
+                                <img class="tileImage" src="images/wash/house.svg">
+                            </div>
+                            <div class="label ">HOME</div>
+                        </div>
+                        <div class="tile">
+                            <div class="glow">
+                                <img class="tileImage" src="images/wash/health.svg">
+                            </div>
+                            <div class="label ">HEALTH</div>
+                        </div>
+                        <div class="tile">
+                            <div class="glow">
+                                <img class="tileImage " src="images/wash/car.svg">
+                            </div>
+                            <div class="label ">AUTO</div>
+                        </div>
+                        <div class="tile" onclick="openTravel()">
+                            <div class="glow">
+                                <img class="tileImage " src="images/wash/travel.svg">
+                            </div>
+                            <div class="label">TRAVEL</div>
+                        </div>
+                    </div>
+                    <div class="call"><span><strong>Co</strong>nvenient</span><span> <strong>Co</strong>gnitive</span><span><strong>Co</strong>verage</span></div>
+                    <div class="hero">
+                        <img class="tileImage " src="images/wash/watch.svg ">
+                        <div class="heroText ">We value your time, with our instant and intelligent policy bot service</div>
+                        <img class="botImage " src="images/wash/bot.svg ">
+                    </div>
+                </aside>
+                <!-- secondary -->
+
+                <!-- div class="json-respond">
+                            
+
+
+                            </div -->
+                <div style="margin-top:100px;" class="separator"></div>
+            </section>
+            <!-- layout section -->
         </div>
     </div>
-    <script src="store.js ">
-    </script>
+
+    <footer>
+        <section class="layout">
+            <p>
+            </p>
+            <div class="github">
+                <span class="octicon octicon-octoface" style="font-size:22px;padding-right:10px;">
+    </span>
+                <!--                <a href="https://github.com/IBM-Bluemix/insurance-bot"> Learn how this site was built </a>-->
+            </div>
+            <p></p>
+        </section>
+        <!-- layout -->
+    </footer>
+    <!-- footer section -->
+
+    <script src="./store.js"></script>
+
+
+
 
 </body>
+
+</html>
