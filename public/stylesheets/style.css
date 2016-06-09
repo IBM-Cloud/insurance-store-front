@@ -609,7 +609,9 @@ footer {}
 .criteria-label {
     text-align: center;
     margin: 10px;
-    font-size: 14px;
+    margin-left: 20px;
+    margin-right: 0;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: 1px;
     min-width: 100px;
@@ -634,17 +636,20 @@ footer {}
     align-items: center;
     margin: 20px;
 }
+.evaluation-image {
+    height: 50px;
+}
 .slider-label {
     margin: 10px;
     color: #225282;
-    min-width: 30px;
+    min-width: 90px;
     text-align: center;
+    font-size: 12px;
 }
 .output {
     display: flex;
     flex-direction: row;
     display: none;
-    ;
 }
 .radar {
     display: flex;
@@ -681,4 +686,17 @@ footer {}
     border-radius: 5px;
     color: #597a96;
     border: 1px dotted #8ad3f3;
+}
+.consideration {
+    min-width: 100px;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    align-items: center;
+    margin-left: 10px;
+    justify-content: center;
+    color: #225282;
+    font-weight: bold;
+    border: 1px solid #8ad3f3;
 }
