@@ -1,5 +1,3 @@
-// add comment
-// do the callback to watson over here
 var express   	= require('express'),
 	  app         = express(),
 		bodyParser 	= require('body-parser'),
