@@ -193,6 +193,8 @@ PolicyBuilder.prototype.sliderChange = function (element) {
             consideration.innerHTML = data.values[slider.value];
         }
     });
+
+    pb.send();
 }
 
 
@@ -225,9 +227,79 @@ PolicyBuilder.prototype.process = function () {
         });
     })
     var output = document.getElementById('output');
-    output.style.display = 'inherit';
+    output.style.display = 'flex';
 
     //    pb.addRadar();
+}
+
+
+
+PolicyBuilder.prototype.buildFeedback = function (option) {
+
+    var policyFeedback = document.createElement('div');
+    policyFeedback.className = 'policyFeedback';
+
+    policyFeedback.innerHTML =
+        '<div class="policyTitle">' +
+        '<div class="policyName">' + option.name + '</div>' +
+        '</div>' +
+        '<div class="policyDetails">' +
+
+        '<div class="policyData">' +
+        '<label class="policyLabel">Coverage:</label><span class="policyContent">$' + option.values['amount'] + '</span></div>' +
+        '<div class="policyData">' +
+        '<label class="policyLabel">Cost:</label><span class="policyContent">$' + option.values['cost'] + '</span></div>' +
+        '<div class="policyData">comfortable</div>' +
+        '<div class="policyRating"><img class="starImage" src="images/wash/star.svg"><img class="starImage" src="images/wash/star.svg"><img class="starImage" src="images/wash/star.svg"></div>' +
+        '</div>' +
+        '<div class = "policyAction">' +
+        '<div class = "buyPolicy" onclick = "openWatson()"> Buy now </div>' +
+        '</div> '
+
+    return policyFeedback;
+}
+
+
+
+PolicyBuilder.prototype.send = function () {
+
+    var pb = this;
+
+    xmlhttp = new XMLHttpRequest();
+    var url = "/api/tradeoff";
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+            var data = JSON.parse(xmlhttp.responseText);
+
+            var anchor = document.getElementById('policies');
+
+            var options = data.body.problem.options;
+
+
+
+            var anchor = document.getElementById('policies');
+            anchor.innerHTML = '';
+
+            options.forEach(function (option) {
+                var element = pb.buildFeedback(option);
+                anchor.appendChild(element);
+            })
+            console.log(data.body.problem.options);
+        }
+    }
+    var parameters = {
+        "tripDuration": 5,
+        "addTravelers": [18, 9],
+        "cancelCov": false,
+        "tripCost": 5000
+    };
+
+    parameters = JSON.stringify(parameters);
+
+    xmlhttp.send(parameters);
 }
 
 var builder = new PolicyBuilder();

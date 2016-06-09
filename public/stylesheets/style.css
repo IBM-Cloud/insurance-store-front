@@ -1,5 +1,13 @@
+<<<<<<< Updated upstream
 /* comment */
 
+=======
+<<<<<<< HEAD
+=======
+/* comment */
+
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 body,
 html {
     background-color: #fff;
@@ -33,12 +41,12 @@ h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: #e7f6fd;
+    background: #225282;
     padding: 30px;
     padding-bottom: 0px;
     padding-top: 0;
     margin-top: 40px;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 .titleArea {
@@ -67,7 +75,7 @@ a {
 }
 
 .name {
-    font-size: 22px;
+    font-size: 26px;
     margin-left: 10px;
 }
 
@@ -92,7 +100,7 @@ a {
     margin: 20px;
     /* background: #f1f5f8; */
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #597a96;
     line-height: 24px;
     text-align: center;
@@ -107,9 +115,9 @@ a {
     font-size: 12px;
     margin: 20px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #597a96;
-    border: 1px dotted #8ad3f3;
+    border: 1px dashed #597a96;
 }
 .welcomeText {
     font-size: 16px;
@@ -280,6 +288,10 @@ a {
     justify-content: center;
     height: 100px;
 }
+.menuLink {
+    color: white !important;
+    font-weight: bold;
+}
 .tiles {
     display: flex;
     flex-direction: row;
@@ -296,10 +308,10 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 144px;
-    height: 230px;
-    border-radius: 5px;
-    border: 1px dashed #12aaeb;
+    width: 130px;
+    height: 220px;
+    border-radius: 4px;
+    border: 2px dashed #597a96;
     margin: 0px;
     background: white;
     /*    box-shadow: 0 0.125em 0.5em 0 rgba(4, 49, 64, 0.1);*/
@@ -316,7 +328,7 @@ a {
 .label {
     text-align: center;
     margin: 10px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -325,7 +337,7 @@ a {
     height: 40px;
     margin: 40px;
     margin-bottom: 60px;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #597a96;
     display: flex;
     flex-direction: row;
@@ -353,7 +365,7 @@ a {
     align-self: center;
 }
 .hero {
-    border-radius: 5px;
+    border-radius: 4px;
     margin-top: 20px;
     margin-left: 36px;
     margin-right: 36px;
@@ -366,11 +378,11 @@ a {
     padding: 20px;
     border-radius: 4px;
     color: white;
-    border: 1px dashed #e7f6fd;
-    padding: 50px;
+    border: 1px solid #12aaeb;
+    /* padding: 50px; */
 }
 .json-respond {
-    border-radius: 5px;
+    border-radius: 4px;
     border: 1px solid #a2b1c1;
     margin-top: 20px;
     margin-left: 36px;
@@ -384,16 +396,21 @@ a {
 .heroText {
     width: 360px;
     padding: 20px;
-    padding-left: 80px;
     color: #597a96;
     font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 24px;
 }
 .botImage {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 140px;
-    margin: -10px;
+    width: 60px;
+    margin: 20px;
+}
+.watchImage {
+    width: 80px;
 }
 .homePage .member {
     height: 150px;
@@ -477,7 +494,7 @@ footer {}
 }
 .home {
     text-decoration: none;
-    color: #225282;
+    color: #FFFFFF;
     border-bottom: none;
     padding-bottom: 1px;
 }
@@ -509,15 +526,15 @@ footer {}
     margin: 20px;
     margin-top: 40px;
     min-width: 300px;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #597a96;
-    border: 1px dotted #8ad3f3;
+    border: 1px dashed #597a96;
 }
 .quote {
     background: #a0dcf7;
     border: none;
     color: #225282;
-    border-radius: 5px;
+    border-radius: 4px;
     width: 140px;
     font-size: 14px;
     height: 40px;
@@ -536,9 +553,10 @@ footer {}
     flex-direction: row;
     justify-content: center;
     margin: 20px;
-    font-size: 12px;
+    font-size: 14px;
     color: #12aaeb;
-    border-radius: 5px;
+    font-weight: bold;
+    border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: visibility 2s linear;
@@ -557,6 +575,11 @@ footer {}
 .quoteImage {
     height: 100px;
 }
+.learn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .elements {
     display: flex;
     flex-direction: row;
@@ -572,8 +595,8 @@ footer {}
     justify-content: center;
     width: 160px;
     height: 160px;
-    border-radius: 5px;
-    border: 1px dashed #12aaeb;
+    border-radius: 4px;
+    border: 2px dashed #597a96;
     margin: 20px;
     background: white;
     align-content: center;
@@ -582,7 +605,7 @@ footer {}
     /*    box-shadow: 0 0.125em 0.5em 0 rgba(4, 49, 64, 0.1);*/
 }
 .criteria:hover {
-    border: 1px dashed orange;
+    border: 2px solid orange;
 }
 .selectedCriteria {
     cursor: pointer;
@@ -591,8 +614,8 @@ footer {}
     justify-content: center;
     width: 160px;
     height: 160px;
-    border-radius: 5px;
-    border: 1px solid #12aaeb;
+    border-radius: 4px;
+    border: 2px solid #12aaeb;
     margin: 20px;
     background: #fcfefe;
     align-content: center;
@@ -613,10 +636,11 @@ footer {}
     margin: 10px;
     margin-left: 20px;
     margin-right: 0;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 1px;
     min-width: 100px;
+    color: #225282
 }
 .layout {
     display: flex;
@@ -639,7 +663,7 @@ footer {}
     margin: 20px;
 }
 .evaluation-image {
-    height: 50px;
+    height: 60px;
 }
 .slider-label {
     margin: 10px;
@@ -649,9 +673,8 @@ footer {}
     font-size: 12px;
 }
 .output {
-    display: flex;
-    flex-direction: row;
     display: none;
+    flex-direction: row;
 }
 .radar {
     display: flex;
@@ -660,45 +683,119 @@ footer {}
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    width: 300px;
-    max-width: 300px;
-    height: 300px;
+    width: 200px;
+    /* max-width: 260px; */
+    
+    height: 200px;
     max-height: 300px;
-    margin: 20px;
-    margin-top: 40px;
-    min-width: 300px;
-    border-radius: 5px;
+    /* margin: 20px; */
+    
+    margin-top: 50px;
+    min-width: 260px;
+    border-radius: 4px;
     color: #597a96;
     border: 1px dotted #8ad3f3;
 }
 .policies {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    width: 300px;
-    max-width: 300px;
-    height: 300px;
-    max-height: 300px;
+    width: 450px;
     margin: 20px;
     margin-top: 40px;
-    min-width: 300px;
-    border-radius: 5px;
+    min-width: 450px;
+    border-radius: 4px;
+    flex-wrap: wrap;
     color: #597a96;
-    border: 1px dotted #8ad3f3;
+    /*    border: 1px dotted #8ad3f3;*/
 }
 .consideration {
     min-width: 100px;
     height: 36px;
     display: flex;
     flex-direction: row;
-    font-size: 12px;
+    font-size: 13px;
     align-items: center;
     margin-left: 10px;
     justify-content: center;
     color: #225282;
     font-weight: bold;
-    border: 1px solid #8ad3f3;
+    border: 2px solid #8ad3f3;
+}
+.policyFeedback {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 300px;
+    border: 2px solid #597a96;
+    border-radius: 4px;
+    margin: 10px;
+}
+.policyTitle {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    color: #fff;
+    min-height: 50px;
+    background: #597a96;
+    max-height: 50px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #597a96;
+}
+.policyDetails {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    /*    min-height: 220px;*/
+    
+    height: 200px;
+    border-bottom: 2px solid #597a96;
+    align-items: center;
+    justify-content: center;
+}
+.policyAction {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.policyData {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+}
+.policyLabel {
+    margin: 5px;
+    font-size: 14px;
+}
+.policyContent {
+    font-weight: bold;
+    font-size: 16px;
+}
+.buyPolicy {
+    background: #a0dcf7;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+.starImage {
+    height: 24px;
 }
