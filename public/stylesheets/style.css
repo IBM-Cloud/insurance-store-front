@@ -673,14 +673,14 @@ footer {}
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    width: 200px;
+    width: 300px;
     /* max-width: 260px; */
     
-    height: 200px;
+    height: 300px;
     max-height: 300px;
     /* margin: 20px; */
     
-    margin-top: 50px;
+    margin-top: 60px;
     min-width: 260px;
     border-radius: 4px;
     color: #597a96;
@@ -718,16 +718,16 @@ footer {}
 .policyFeedback {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     height: 300px;
     border: 2px solid #597a96;
     border-radius: 4px;
-    margin: 10px;
+    margin: 20px;
 }
 .policyTitle {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     color: #fff;
     min-height: 50px;
     background: #597a96;
@@ -742,7 +742,7 @@ footer {}
 .policyDetails {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     /*    min-height: 220px;*/
     
     height: 200px;
@@ -753,7 +753,7 @@ footer {}
 .policyAction {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 180px;
     height: 50px;
     align-items: center;
     justify-content: center;
@@ -775,7 +775,8 @@ footer {}
     font-size: 16px;
 }
 .buyPolicy {
-    background: #a0dcf7;
+    /*    background: #a0dcf7;*/
+    
     width: 100%;
     height: 100%;
     display: flex;
