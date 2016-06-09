@@ -100,6 +100,8 @@ a {
 }
 .quote {
     margin: 20px;
+    color: #225282;
+    font-weight: bold;
 }
 .plan {
     font-size: 12px;
@@ -592,7 +594,6 @@ footer {}
     align-content: center;
     align-items: center;
     color: #597a96;
-    /*    box-shadow: 0 0.125em 0.5em 0 rgba(4, 49, 64, 0.1);*/
 }
 .criteria:hover {
     border: 2px solid orange;
@@ -673,14 +674,11 @@ footer {}
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    width: 300px;
-    /* max-width: 260px; */
-    
-    height: 300px;
-    max-height: 300px;
-    /* margin: 20px; */
-    
-    margin-top: 60px;
+    width: 320px;
+    height: 320px;
+    max-height: 320px;
+    margin: 20px;
+    margin-top: 40px;
     min-width: 260px;
     border-radius: 4px;
     color: #597a96;
@@ -694,13 +692,14 @@ footer {}
     justify-content: center;
     font-size: 14px;
     width: 450px;
-    margin: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
+    /* margin: 20px; */
+    /* margin-top: 40px; */
+    
     min-width: 450px;
     border-radius: 4px;
     flex-wrap: wrap;
-    color: #597a96;
-    /*    border: 1px dotted #8ad3f3;*/
+    color: #225282;
 }
 .consideration {
     min-width: 100px;
@@ -720,7 +719,7 @@ footer {}
     flex-direction: column;
     width: 180px;
     height: 300px;
-    border: 2px solid #597a96;
+    border: 2px solid #8ad3f3;
     border-radius: 4px;
     margin: 20px;
 }
@@ -728,16 +727,16 @@ footer {}
     display: flex;
     flex-direction: column;
     width: 180px;
-    color: #fff;
+    color: #225282;
     min-height: 50px;
-    background: #597a96;
+    background: #8ad3f3;
     max-height: 50px;
     height: 50px;
     font-size: 16px;
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid #597a96;
+    border-bottom: 2px solid #8ad3f3;
 }
 .policyDetails {
     display: flex;
@@ -746,7 +745,7 @@ footer {}
     /*    min-height: 220px;*/
     
     height: 200px;
-    border-bottom: 2px solid #597a96;
+    border-bottom: 2px solid #8ad3f3;
     align-items: center;
     justify-content: center;
 }
