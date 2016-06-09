@@ -535,6 +535,7 @@ footer {}
     visibility: visible;
     opacity: 1;
     transition: opacity 2s linear;
+    font-weight: bold;
 }
 .question {
     font-size: 18px;
@@ -788,4 +789,5 @@ footer {}
 }
 .starImage {
     height: 24px;
+    margin-top: 10px;
 }

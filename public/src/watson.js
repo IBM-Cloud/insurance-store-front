@@ -233,28 +233,56 @@ PolicyBuilder.prototype.process = function () {
 }
 
 
+PolicyBuilder.prototype.addStars = function (option) {
+
+    var stars = '<div class="policyRating">';
+
+    var amount = option.values['levelCare'];
+
+    for (count = 0; count < amount; count++) {
+        stars = stars + '<img class="starImage" src="images/wash/star.svg">'
+    }
+
+    stars = stars + '</div>'
+
+    return stars;
+}
+
 
 PolicyBuilder.prototype.buildFeedback = function (option) {
+
+    console.log(option.values);
 
     var policyFeedback = document.createElement('div');
     policyFeedback.className = 'policyFeedback';
 
-    policyFeedback.innerHTML =
+    var structure =
+
         '<div class="policyTitle">' +
         '<div class="policyName">' + option.name + '</div>' +
         '</div>' +
+
         '<div class="policyDetails">' +
 
-        '<div class="policyData">' +
-        '<label class="policyLabel">Coverage:</label><span class="policyContent">$' + option.values['amount'] + '</span></div>' +
-        '<div class="policyData">' +
-        '<label class="policyLabel">Cost:</label><span class="policyContent">$' + option.values['cost'] + '</span></div>' +
-        '<div class="policyData">comfortable</div>' +
-        '<div class="policyRating"><img class="starImage" src="images/wash/star.svg"><img class="starImage" src="images/wash/star.svg"><img class="starImage" src="images/wash/star.svg"></div>' +
+        '<div class = "policyData" > ' +
+        '<label class="policyLabel">Coverage</label><span class="policyContent">$' + option.values['amount'] + '</span>' +
         '</div>' +
+
+        '<div class="policyData">' +
+        '<label class="policyLabel">Cost</label><span class="policyContent">$' + option.values['cost'] + '</span>' +
+        '</div>';
+
+    structure = structure + this.addStars(option);
+
+    structure = structure +
+
+        '</div>' +
+
         '<div class = "policyAction">' +
         '<div class = "buyPolicy" onclick = "openWatson()"> Buy now </div>' +
         '</div> '
+
+    policyFeedback.innerHTML = structure;
 
     return policyFeedback;
 }
