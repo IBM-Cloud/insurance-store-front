@@ -124,34 +124,10 @@ PolicyBuilder.prototype.radarCalculation = function (item) {
 
 PolicyBuilder.prototype.addRadar = function () {
 
-
-
     /* Premise - the web = 100% coverage, so calculate the percentagage
        of each element */
 
     var dataValues = this.radarCalculation();
-
-    //    var durationData = document.getElementById(this.criteria[this.DURATION].sliderId);
-    //
-    //    if (durationData) {
-    //        var graduations = this.criteria[this.DURATION].max + 1;
-    //        dataValues[this.DURATION] = durationData.value * 100 / graduations;
-    //    }
-    //
-    //    var peopleData = document.getElementById(this.criteria[this.PEOPLE].sliderId);
-    //
-    //    if (peopleData) {
-    //        var graduations = this.criteria[this.PEOPLE].max + 1;
-    //        dataValues[this.PEOPLE] = peopleData.value * 100 / graduations;
-    //    }
-    //
-    //    var valueData = document.getElementById(this.criteria[this.VALUE].sliderId);
-    //
-    //    if (valueData) {
-    //        var graduations = this.criteria[this.VALUE].max + 1;
-    //        dataValues[this.VALUE] = valueData.value * 100 / graduations;
-    //    }
-
 
     console.log(dataValues);
 
@@ -212,7 +188,7 @@ PolicyBuilder.prototype.sliderChange = function (element) {
 
     pb.send();
 
-    pb.addRadar();
+    //    pb.addRadar();
 }
 
 
