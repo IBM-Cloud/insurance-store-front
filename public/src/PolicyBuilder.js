@@ -4,13 +4,14 @@ var PolicyBuilder = function () {
 
 PolicyBuilder.prototype.selectedCriteria = [];
 
-
+PolicyBuilder.prototype.MINCATEGORY = 0;
 PolicyBuilder.prototype.DURATION = 0;
 PolicyBuilder.prototype.REVIEWS = 1;
 PolicyBuilder.prototype.PEOPLE = 2;
 PolicyBuilder.prototype.COST = 3;
 PolicyBuilder.prototype.DEDUCTABLE = 4;
-PolicyBuilder.prototype.VALUE = 4;
+PolicyBuilder.prototype.VALUE = 5;
+PolicyBuilder.prototype.MAXCATEGORY = 6;
 
 PolicyBuilder.prototype.criteria = [];
 
@@ -105,30 +106,67 @@ PolicyBuilder.prototype.makeEvaluation = function (criteria) {
 }
 
 
+PolicyBuilder.prototype.radarCalculation = function (item) {
+
+    var dataValues = [10, 10, 10, 10, 10, 10];
+
+    for (var count = this.MINCATEGORY; count < this.MAXCATEGORY; count++) {
+
+        var slider = document.getElementById(this.criteria[count].sliderId);
+        var graduations = this.criteria[count].max + 1;
+        dataValues[count] = slider.value * 100 / graduations;
+
+    }
+
+    return dataValues;
+}
+
+
 PolicyBuilder.prototype.addRadar = function () {
 
+
+
+    /* Premise - the web = 100% coverage, so calculate the percentagage
+       of each element */
+
+    var dataValues = this.radarCalculation();
+
+    //    var durationData = document.getElementById(this.criteria[this.DURATION].sliderId);
+    //
+    //    if (durationData) {
+    //        var graduations = this.criteria[this.DURATION].max + 1;
+    //        dataValues[this.DURATION] = durationData.value * 100 / graduations;
+    //    }
+    //
+    //    var peopleData = document.getElementById(this.criteria[this.PEOPLE].sliderId);
+    //
+    //    if (peopleData) {
+    //        var graduations = this.criteria[this.PEOPLE].max + 1;
+    //        dataValues[this.PEOPLE] = peopleData.value * 100 / graduations;
+    //    }
+    //
+    //    var valueData = document.getElementById(this.criteria[this.VALUE].sliderId);
+    //
+    //    if (valueData) {
+    //        var graduations = this.criteria[this.VALUE].max + 1;
+    //        dataValues[this.VALUE] = valueData.value * 100 / graduations;
+    //    }
+
+
+    console.log(dataValues);
+
     var data = {
-        labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+        labels: ["Duration", "Reviews", "People", "Cost", "Cancelation", "Value"],
         datasets: [
             {
-                label: "My First dataset",
-                backgroundColor: "rgba(179,181,198,0.2)",
-                borderColor: "rgba(179,181,198,1)",
-                pointBackgroundColor: "rgba(179,181,198,1)",
+                label: "Insurance Coverage",
+                backgroundColor: "rgba(18,170,235,0.3)",
+                borderColor: "rgba(18,170,235,1)",
+                pointBackgroundColor: "rgba(18,170,235,1)",
                 pointBorderColor: "#fff",
                 pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(179,181,198,1)",
-                data: [65, 59, 90, 81, 56, 55, 40]
-        },
-            {
-                label: "My Second dataset",
-                backgroundColor: "rgba(255,99,132,0.2)",
-                borderColor: "rgba(255,99,132,1)",
-                pointBackgroundColor: "rgba(255,99,132,1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(255,99,132,1)",
-                data: [28, 48, 40, 19, 96, 27, 100]
+                pointHoverBorderColor: "rgba(18,170,235,1)",
+                data: dataValues
         }
     ]
     };
@@ -139,14 +177,24 @@ PolicyBuilder.prototype.addRadar = function () {
     polar.width = 280;
 
     var radar = document.getElementById('radar');
+    radar.innerHTML = '';
+
     radar.appendChild(polar);
 
     var ctx = polar.getContext("2d");
 
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
-        data: data
-    });
+        data: data,
+        options: {
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    })
 }
 
 PolicyBuilder.prototype.sliderChange = function (element) {
@@ -163,6 +211,8 @@ PolicyBuilder.prototype.sliderChange = function (element) {
     });
 
     pb.send();
+
+    pb.addRadar();
 }
 
 
@@ -196,8 +246,6 @@ PolicyBuilder.prototype.process = function () {
     })
     var output = document.getElementById('output');
     output.style.display = 'flex';
-
-    //    pb.addRadar();
 }
 
 
@@ -218,8 +266,6 @@ PolicyBuilder.prototype.addStars = function (option) {
 
 
 PolicyBuilder.prototype.buildFeedback = function (option) {
-
-    console.log(option.values);
 
     var policyFeedback = document.createElement('div');
     policyFeedback.className = 'policyFeedback';
@@ -325,7 +371,6 @@ PolicyBuilder.prototype.send = function () {
                     var element = pb.buildFeedback(option);
                     anchor.appendChild(element);
                 })
-                console.log(data.body.problem.options);
             }
         }
 

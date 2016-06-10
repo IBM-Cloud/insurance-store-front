@@ -683,7 +683,7 @@ footer {}
     min-width: 260px;
     border-radius: 4px;
     color: #597a96;
-    border: 1px dotted #8ad3f3;
+    /*    border: 1px dotted #8ad3f3;*/
 }
 .policies {
     display: flex;
@@ -713,7 +713,7 @@ footer {}
     justify-content: center;
     color: #225282;
     font-weight: bold;
-    border: 2px solid #8ad3f3;
+    border: 2px solid #12aaeb;
 }
 .policyFeedback {
     display: flex;
