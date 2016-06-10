@@ -304,32 +304,35 @@ PolicyBuilder.prototype.send = function () {
 
     var anchor = document.getElementById('policies');
     anchor.innerHTML = '';
+    anchor.innerHTML = '<img src="./images/loading.svg">';
 
-    xmlhttp = new XMLHttpRequest();
-    var url = "/api/tradeoff";
-    xmlhttp.open("POST", url, true);
-    xmlhttp.setRequestHeader("Content-type", "application/json");
-    xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    setTimeout(function () {
+        xmlhttp = new XMLHttpRequest();
+        var url = "/api/tradeoff";
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-            var data = JSON.parse(xmlhttp.responseText);
+                var data = JSON.parse(xmlhttp.responseText);
 
-            var anchor = document.getElementById('policies');
+                var anchor = document.getElementById('policies');
 
-            var options = data.body.problem.options;
+                var options = data.body.problem.options;
+                anchor.innerHTML = '';
 
-
-            options.forEach(function (option) {
-                var element = pb.buildFeedback(option);
-                anchor.appendChild(element);
-            })
-            console.log(data.body.problem.options);
+                options.forEach(function (option) {
+                    var element = pb.buildFeedback(option);
+                    anchor.appendChild(element);
+                })
+                console.log(data.body.problem.options);
+            }
         }
-    }
 
-    var parameters = pb.constructPostData();
+        var parameters = pb.constructPostData();
 
-    xmlhttp.send(parameters);
+        xmlhttp.send(parameters);
+    }, 2000);
 }
 
 /**
