@@ -21,11 +21,6 @@ PolicyBuilder.prototype.selectCriteria = function (label) {
 
     var newSelections = [];
 
-    this.criteria.forEach(function (criteria) {
-        if (criteria.type === 'Mandatory') {
-            newSelections.push(criteria.label);
-        }
-    })
 
     var found = false;
 
@@ -37,7 +32,7 @@ PolicyBuilder.prototype.selectCriteria = function (label) {
             element.className = 'criteria';
         } else {
             newSelections.push(criteria);
-            var element = document.getElementById(criteria.label);
+            var element = document.getElementById(criteria);
             element.className = 'selectedCriteria';
         }
     })
@@ -238,6 +233,12 @@ PolicyBuilder.prototype.process = function () {
     var filter = document.getElementById('filter');
 
     var pb = this;
+
+    pb.criteria.forEach(function (criteria) {
+        if (criteria.type === 'Mandatory') {
+            pb.selectedCriteria.push(criteria.label);
+        }
+    })
 
     pb.selectedCriteria.forEach(function (criteria) {
 
