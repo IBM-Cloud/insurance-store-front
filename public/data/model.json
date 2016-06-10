@@ -8,6 +8,7 @@
         "input": [1, 14, 28, 56, 365]
     }, {
         "label": "Reviews",
+        "sliderId": "ReviewsSlider",
         "image": "recommendation.svg",
         "min": 0,
         "max": 4,
@@ -15,7 +16,7 @@
         "input": [1, 2, 3, 4, 5]
     }, {
         "label": "People",
-        "sliderId": "DurationSlider",
+        "sliderId": "PeopleSlider",
         "image": "person.svg",
         "min": 0,
         "max": 9,
@@ -23,6 +24,7 @@
         "input": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }, {
         "label": "Cost",
+        "sliderId": "CostSlider",
         "image": "cost.svg",
         "min": 0,
         "max": 4,
@@ -31,6 +33,7 @@
             },
     {
         "label": "Cancelation",
+        "sliderId": "CancelationSlider",
         "image": "cancel.svg",
         "min": 0,
         "max": 2,
@@ -39,6 +42,7 @@
             },
     {
         "label": "Value",
+        "sliderId": "ValueSlider",
         "image": "world.svg",
         "min": 0,
         "max": 4,
