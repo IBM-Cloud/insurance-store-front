@@ -21,6 +21,12 @@ PolicyBuilder.prototype.selectCriteria = function (label) {
 
     var newSelections = [];
 
+    this.criteria.forEach(function (criteria) {
+        if (criteria.type === 'Mandatory') {
+            newSelections.push(criteria.label);
+        }
+    })
+
     var found = false;
 
     this.selectedCriteria.forEach(function (criteria) {
@@ -31,7 +37,7 @@ PolicyBuilder.prototype.selectCriteria = function (label) {
             element.className = 'criteria';
         } else {
             newSelections.push(criteria);
-            var element = document.getElementById(criteria);
+            var element = document.getElementById(criteria.label);
             element.className = 'selectedCriteria';
         }
     })
@@ -82,8 +88,11 @@ PolicyBuilder.prototype.addCriteria = function () {
         pb.criteria = data;
 
         pb.criteria.forEach(function (c) {
-            var element = pb.makeCritria(c.label, c.image);
-            elements.appendChild(element);
+
+            if (c.type === "Optional") {
+                var element = pb.makeCritria(c.label, c.image);
+                elements.appendChild(element);
+            }
         })
 
         var processButton = document.getElementById('process');
@@ -96,12 +105,17 @@ PolicyBuilder.prototype.makeEvaluation = function (criteria) {
 
     var evaluation = document.createElement('div');
     evaluation.className = 'evaluation';
+
+    var sliderId = criteria.label + 'Slider';
+
+    criteria.sliderId = sliderId;
+
     evaluation.innerHTML =
 
         '<img src = "images/wash/' + criteria.image + '" class = "evaluation-image">' +
         '<label class = "criteria-label">' + criteria.label + '</label>' +
         '<label class = "slider-label" >' + criteria.values[0] + '</label >' +
-        '<input class = "slider" id = "' + criteria.label + 'Slider' + '" type = "range" min = "' + criteria.min + '"max = "' + criteria.max + '"step = "1" value ="0"/>' +
+        '<input class = "slider" id = "' + sliderId + '" type = "range" min = "' + criteria.min + '"max = "' + criteria.max + '"step = "1" value ="0"/>' +
         '<label class = "slider-label">' + criteria.values[criteria.max] + '</label>' + '<div class="consideration" id="' + criteria.label + 'Consideration' + '">' + criteria.values[0] + '</div>';
 
     return evaluation;
@@ -358,9 +372,11 @@ PolicyBuilder.prototype.send = function () {
 
                 var data = JSON.parse(xmlhttp.responseText);
 
+                console.log(data);
+
                 var anchor = document.getElementById('policies');
 
-                var options = data.body.problem.options;
+                var options = data.problem.options;
                 anchor.innerHTML = '';
 
                 console.log(options);
