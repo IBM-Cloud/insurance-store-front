@@ -10,7 +10,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
-var catalog_url = "https://insurance-catalog.mybluemix.net";
+// Get URLs for Catalog and Orders APIs
+var appName;
+if (appEnv.isLocal) {
+	require('dotenv').load();
+	appName = process.env.CF_APP_NAME;
+}
+else {
+	appName = JSON.parse(process.env.VCAP_APPLICATION).name;
+}
+var domainPrefix = appName.substr(0, appName.indexOf("insurance") + 10);
+var catalog_url = constructApiRoute(domainPrefix, "catalog"),
+		orders_url = constructApiRoute(domainPrefix, "orders");
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
@@ -20,7 +31,6 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 // Request handler for tone analysis
 app.post('/api/tradeoff', function(req, res, next) {
-	console.log(req.body);
 	var url = catalog_url + '/tradeoff';
 	var options = {
 	  body: req.body,
@@ -31,6 +41,10 @@ app.post('/api/tradeoff', function(req, res, next) {
 	  if (err)
       return res.json(err);
     else
-      return res.json(response);
+      return res.json(response.body);
 	});
 });
+
+function constructApiRoute(prefix, suffix) {
+	return "https://" + prefix + suffix + ".mybluemix.net";
+}
