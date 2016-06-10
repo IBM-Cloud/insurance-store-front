@@ -587,8 +587,8 @@ footer {}
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     border-radius: 4px;
     border: 2px dashed #597a96;
     margin: 20px;
@@ -605,8 +605,8 @@ footer {}
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     border-radius: 4px;
     border: 2px solid #12aaeb;
     margin: 20px;
@@ -849,5 +849,5 @@ footer {}
 }
 .glasses {
     height: 11px;
-    margin-right: 4px;
+    margin-right: 10px;
 }

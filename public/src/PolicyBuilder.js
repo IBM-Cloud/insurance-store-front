@@ -9,7 +9,7 @@ PolicyBuilder.prototype.DURATION = 0;
 PolicyBuilder.prototype.REVIEWS = 1;
 PolicyBuilder.prototype.PEOPLE = 2;
 PolicyBuilder.prototype.COST = 3;
-PolicyBuilder.prototype.DEDUCTABLE = 4;
+PolicyBuilder.prototype.CANCELLATION = 4;
 PolicyBuilder.prototype.VALUE = 5;
 PolicyBuilder.prototype.MAXCATEGORY = 6;
 
@@ -312,6 +312,20 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
     return policyFeedback;
 }
 
+PolicyBuilder.prototype.getSliderData = function (element) {
+
+    var value;
+
+    var data = document.getElementById(this.criteria[element].sliderId);
+
+    if (data) {
+        value = this.criteria[element].input[data.value];
+    }
+
+    return value;
+}
+
+
 /**
  * Builds parameters for sending to the server
  */
@@ -324,10 +338,27 @@ PolicyBuilder.prototype.constructPostData = function () {
         "tripCost": 5000
     };
 
-    var durationData = document.getElementById(this.criteria[this.DURATION].sliderId);
+    pb = this;
+
+    var durationData = pb.getSliderData(pb.DURATION)
 
     if (durationData) {
-        parameters.tripDuration = this.criteria[this.DURATION].input[durationData.value];
+        parameters.tripDuration = durationData;
+    }
+
+    var costData = pb.getSliderData(pb.COST)
+    if (costData) {
+        parameters.tripCost = costData;
+    }
+
+    var reviewData = pb.getSliderData(pb.REVIEWS)
+    if (reviewData) {
+        parameters.tripCost = reviewData;
+    }
+
+    var cancelData = pb.getSliderData(pb.CANCELLATION)
+    if (cancelData) {
+        parameters.tripCost = cancelData;
     }
 
     var peopleData = document.getElementById(this.criteria[this.PEOPLE].sliderId);
@@ -344,6 +375,8 @@ PolicyBuilder.prototype.constructPostData = function () {
 
         parameters.addTravelers = travelers;
     }
+
+    console.log(parameters);
 
     parameters = JSON.stringify(parameters);
 
