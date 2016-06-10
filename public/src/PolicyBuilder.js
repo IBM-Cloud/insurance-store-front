@@ -15,6 +15,8 @@ PolicyBuilder.prototype.MAXCATEGORY = 6;
 
 PolicyBuilder.prototype.criteria = [];
 
+PolicyBuilder.prototype.radarStatus = false;
+
 PolicyBuilder.prototype.selectCriteria = function (label) {
 
     var newSelections = [];
@@ -47,10 +49,10 @@ PolicyBuilder.prototype.selectCriteria = function (label) {
 
     if (this.selectedCriteria.length > 0) {
         processButton.disabled = false;
-        instructions.className = 'disabledInstructions';
+        instructions.innerHTML = 'Press the evaluate button when ready';
     } else {
         processButton.disabled = true;
-        instructions.className = 'instructions';
+        instructions.innerHTML = 'Select your travel insurance priorities';
     }
 }
 
@@ -113,14 +115,25 @@ PolicyBuilder.prototype.radarCalculation = function (item) {
     for (var count = this.MINCATEGORY; count < this.MAXCATEGORY; count++) {
 
         var slider = document.getElementById(this.criteria[count].sliderId);
-        var graduations = this.criteria[count].max + 1;
-        dataValues[count] = slider.value * 100 / graduations;
+
+        if (slider) {
+            var graduations = this.criteria[count].max + 1;
+            dataValues[count] = slider.value * 100 / graduations;
+        }
 
     }
 
     return dataValues;
 }
 
+PolicyBuilder.prototype.hideRadar = function () {
+    var watson = document.getElementById('watson');
+    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Show Watson Tradeoffs'
+    var radar = document.getElementById('radar');
+    radar.style.height = '0';
+    radar.style.width = '320px';
+    radar.innerHTML = '';
+}
 
 PolicyBuilder.prototype.addRadar = function () {
 
@@ -152,7 +165,12 @@ PolicyBuilder.prototype.addRadar = function () {
     polar.height = 280;
     polar.width = 280;
 
+    var watson = document.getElementById('watson');
+    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Hide Watson Tradeoffs'
+
     var radar = document.getElementById('radar');
+    radar.style.height = '320px';
+    radar.style.width = '320px';
     radar.innerHTML = '';
 
     radar.appendChild(polar);
@@ -194,6 +212,9 @@ PolicyBuilder.prototype.sliderChange = function (element) {
 
 PolicyBuilder.prototype.process = function () {
 
+    var instructions = document.getElementById('instructions');
+    instructions.innerHTML = 'Adjust your priority levels';
+
     var input = document.getElementById('elements');
     input.style.display = 'none';
 
@@ -220,7 +241,7 @@ PolicyBuilder.prototype.process = function () {
             }
         });
     })
-    var output = document.getElementById('output');
+    var output = document.getElementById('results');
     output.style.display = 'flex';
 }
 
@@ -236,7 +257,6 @@ PolicyBuilder.prototype.addStars = function (option) {
     }
 
     stars = stars + '</div>'
-
     return stars;
 }
 
@@ -343,6 +363,8 @@ PolicyBuilder.prototype.send = function () {
                 var options = data.body.problem.options;
                 anchor.innerHTML = '';
 
+                console.log(options);
+
                 options.forEach(function (option) {
                     var element = pb.buildFeedback(option);
                     anchor.appendChild(element);
@@ -377,6 +399,17 @@ var builder = new PolicyBuilder();
 
 function process() {
     builder.process();
+}
+
+function toggleRadar() {
+
+    if (builder.radarStatus === false) {
+        builder.addRadar();
+        builder.radarStatus = true;
+    } else {
+        builder.hideRadar();
+        builder.radarStatus = false;
+    }
 }
 
 window.onload = builder.addCriteria();
