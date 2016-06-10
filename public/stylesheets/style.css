@@ -547,7 +547,7 @@ footer {}
     justify-content: center;
     margin: 20px;
     font-size: 14px;
-    color: #12aaeb;
+    color: #225282;
     font-weight: bold;
     border-radius: 4px;
     text-transform: uppercase;
@@ -577,7 +577,7 @@ footer {}
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 0;
     flex-wrap: wrap;
 }
@@ -665,8 +665,15 @@ footer {}
     font-size: 12px;
 }
 .output {
+    display: flex;
+    flex-direction: column;
+}
+.results {
     display: none;
-    flex-direction: row;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 800px;
 }
 .radar {
     display: flex;
@@ -674,16 +681,16 @@ footer {}
     align-content: center;
     align-items: center;
     justify-content: center;
+    align-self: center;
     font-size: 14px;
-    width: 320px;
     height: 320px;
     max-height: 320px;
-    margin: 20px;
-    margin-top: 40px;
     min-width: 260px;
+    margin-top: 10px;
     border-radius: 4px;
     color: #597a96;
-    /*    border: 1px dotted #8ad3f3;*/
+    height: 0;
+    /*    border-bottom: 1px solid #8ad3f3;*/
 }
 .policies {
     display: flex;
@@ -693,7 +700,6 @@ footer {}
     justify-content: center;
     font-size: 14px;
     width: 800px;
-    margin-top: 20px;
     /* margin: 20px; */
     /* margin-top: 40px; */
     
@@ -775,8 +781,6 @@ footer {}
     font-size: 16px;
 }
 .buyPolicy {
-    /*    background: #a0dcf7;*/
-    
     width: 100%;
     height: 100%;
     display: flex;
@@ -790,4 +794,59 @@ footer {}
 .starImage {
     height: 24px;
     margin-top: 10px;
+}
+.guidance {
+    height: 40px;
+    margin: 40px;
+    width: 740px;
+    margin-bottom: 0;
+    border-radius: 4px;
+    color: #597a96;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    justify-content: space-around;
+    align-items: center;
+    background: #f5fbfe;
+    font-size: 14px;
+}
+.resultsBar {
+    height: 40px;
+    margin: 40px;
+    margin-bottom: 0;
+    border-radius: 4px;
+    color: #597a96;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5fbfe;
+    font-size: 14px;
+}
+.watson {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid #12aaeb;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+    color: #225282;
+    font-weight: bold;
+}
+.glasses {
+    height: 11px;
+    margin-right: 4px;
 }
