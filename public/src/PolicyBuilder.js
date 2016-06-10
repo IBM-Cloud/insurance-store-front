@@ -4,52 +4,15 @@ var PolicyBuilder = function () {
 
 PolicyBuilder.prototype.selectedCriteria = [];
 
-PolicyBuilder.prototype.criteria = [{
-        "label": "Duration",
-        "image": "calendar.svg",
-        "min": 0,
-        "max": 4,
-        "values": ["1 week", "2 weeks", "1 month", "2 months", "1 year"]
-    }, {
-        "label": "Reviews",
-        "image": "recommendation.svg",
-        "min": 0,
-        "max": 4,
-        "values": ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"]
-    }, {
-        "label": "People",
-        "image": "person.svg",
-        "min": 0,
-        "max": 9,
-        "values": ["1 person", "2 people", "3 people", "4 people", "5 people", "6 people", "7 people", "8 people", "9 people", "10 people"]
-    }, {
-        "label": "Cost",
-        "image": "cost.svg",
-        "min": 0,
-        "max": 4,
-        "values": ["Up to $50", "Up to $100", "Up to $200", "Up to $500", "Up to $1000"]
-            },
-    {
-        "label": "Deductable",
-        "image": "guage.svg",
-        "min": 0,
-        "max": 2,
-        "values": ["$500", "$300", "none"]
-            },
-//    {
-     //        "label": "Quality",
-     //        "image": "health.svg",
-     //        "min": 0,
-     //        "max": 2,
-     //        "values": ["Basic", "Comfortable", "Best"],
-     //            },
-    {
-        "label": "Value",
-        "image": "world.svg",
-        "min": 0,
-        "max": 4,
-        "values": ["Up to $1000", "Up to $2000", "Up to $5000", "Up to $10000", "Up to $10000"]
-            }]
+
+PolicyBuilder.prototype.DURATION = 0;
+PolicyBuilder.prototype.REVIEWS = 1;
+PolicyBuilder.prototype.PEOPLE = 2;
+PolicyBuilder.prototype.COST = 3;
+PolicyBuilder.prototype.DEDUCTABLE = 4;
+PolicyBuilder.prototype.VALUE = 4;
+
+PolicyBuilder.prototype.criteria = [];
 
 PolicyBuilder.prototype.selectCriteria = function (label) {
 
@@ -111,13 +74,18 @@ PolicyBuilder.prototype.addCriteria = function () {
 
     var pb = this;
 
-    pb.criteria.forEach(function (c) {
-        var element = pb.makeCritria(c.label, c.image);
-        elements.appendChild(element);
-    })
+    this.get('./data/model.json', function (data) {
 
-    var processButton = document.getElementById('process');
-    processButton.disabled = true;
+        pb.criteria = data;
+
+        pb.criteria.forEach(function (c) {
+            var element = pb.makeCritria(c.label, c.image);
+            elements.appendChild(element);
+        })
+
+        var processButton = document.getElementById('process');
+        processButton.disabled = true;
+    });
 }
 
 
@@ -287,11 +255,55 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
     return policyFeedback;
 }
 
+/**
+ * Builds parameters for sending to the server
+ */
 
+PolicyBuilder.prototype.constructPostData = function () {
+    var parameters = {
+        "tripDuration": 5,
+        "addTravelers": [18, 9],
+        "cancelCov": false,
+        "tripCost": 5000
+    };
+
+    var durationData = document.getElementById(this.criteria[this.DURATION].sliderId);
+
+    if (durationData) {
+        parameters.tripDuration = this.criteria[this.DURATION].input[durationData.value];
+    }
+
+    var peopleData = document.getElementById(this.criteria[this.PEOPLE].sliderId);
+
+    if (peopleData) {
+
+        var count = this.criteria[this.PEOPLE].input[peopleData.value]
+
+        var travelers = [];
+
+        for (var c = 0; c < count; c++) {
+            travelers.push(18);
+        }
+
+        parameters.addTravelers = travelers;
+    }
+
+    parameters = JSON.stringify(parameters);
+
+    return parameters;
+}
+
+
+/**
+ * Sends the policy parameters to the server
+ */
 
 PolicyBuilder.prototype.send = function () {
 
     var pb = this;
+
+    var anchor = document.getElementById('policies');
+    anchor.innerHTML = '';
 
     xmlhttp = new XMLHttpRequest();
     var url = "/api/tradeoff";
@@ -307,10 +319,6 @@ PolicyBuilder.prototype.send = function () {
             var options = data.body.problem.options;
 
 
-
-            var anchor = document.getElementById('policies');
-            anchor.innerHTML = '';
-
             options.forEach(function (option) {
                 var element = pb.buildFeedback(option);
                 anchor.appendChild(element);
@@ -318,17 +326,28 @@ PolicyBuilder.prototype.send = function () {
             console.log(data.body.problem.options);
         }
     }
-    var parameters = {
-        "tripDuration": 5,
-        "addTravelers": [18, 9],
-        "cancelCov": false,
-        "tripCost": 5000
-    };
 
-    parameters = JSON.stringify(parameters);
+    var parameters = pb.constructPostData();
 
     xmlhttp.send(parameters);
 }
+
+/**
+ * A convenience function for http get
+ * @param {String} url @param{Function} callback
+ */
+
+PolicyBuilder.prototype.get = function (path, callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            callback(JSON.parse(xmlhttp.responseText));
+        }
+    }
+    xmlhttp.open("GET", path, true);
+    xmlhttp.send();
+}
+
 
 var builder = new PolicyBuilder();
 
