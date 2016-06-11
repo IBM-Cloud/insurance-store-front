@@ -222,7 +222,7 @@ PolicyBuilder.prototype.sliderChange = function (element) {
 PolicyBuilder.prototype.process = function () {
 
     var instructions = document.getElementById('instructions');
-    instructions.innerHTML = 'Adjust your priority levels';
+    instructions.innerHTML = 'Adjust your levels';
 
     var input = document.getElementById('elements');
     input.style.display = 'none';
