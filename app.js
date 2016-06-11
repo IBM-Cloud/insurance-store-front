@@ -29,22 +29,32 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
-// Request handler for tone analysis
+// Request handler proxy for Tradeoff Analytics calculations
+// Invokes the evaluate() function in the insurance-catalog service
 app.post('/api/tradeoff', function(req, res, next) {
-	var url = catalog_url + '/tradeoff';
 	var options = {
 	  body: req.body,
 	  json: true,
-	  url: url
+	  url: catalog_url + '/tradeoff'
 	};
+	return makePostRequest(options, res);
+});
+
+/**
+ * Constructs a URL for an insurance microservice
+ */
+function constructApiRoute(prefix, suffix) {
+	return "https://" + prefix + suffix + ".mybluemix.net";
+}
+
+/**
+ * Makes an HTTP POST request given options and the initial response object
+ */
+function makePostRequest(options, res) {
 	request.post(options, function (err, response) {
 	  if (err)
       return res.json(err);
-    else
+    else 
       return res.json(response.body);
 	});
-});
-
-function constructApiRoute(prefix, suffix) {
-	return "https://" + prefix + suffix + ".mybluemix.net";
 }
