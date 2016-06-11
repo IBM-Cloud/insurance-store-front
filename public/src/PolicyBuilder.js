@@ -96,12 +96,18 @@ PolicyBuilder.prototype.makeEvaluation = function (criteria) {
 
     criteria.sliderId = sliderId;
 
+    var sliderValue = criteria.min;
+
+    if (criteria.label === this.criteria[this.COST].label) {
+        sliderValue = criteria.max;
+    }
+
     evaluation.innerHTML =
 
         '<img src = "images/wash/' + criteria.image + '" class = "evaluation-image">' +
         '<label class = "criteria-label">' + criteria.label + '</label>' +
         '<label class = "slider-label" >' + criteria.values[0] + '</label >' +
-        '<input class = "slider" id = "' + sliderId + '" type = "range" min = "' + criteria.min + '"max = "' + criteria.max + '"step = "1" value ="0"/>' +
+        '<input class = "slider" id = "' + sliderId + '" type = "range" min = "' + criteria.min + '"max = "' + criteria.max + '"step = "1" value ="' + sliderValue + '"/>' +
         '<label class = "slider-label">' + criteria.values[criteria.max] + '</label>' + '<div class="consideration" id="' + criteria.label + 'Consideration' + '">' + criteria.values[0] + '</div>';
 
     return evaluation;
@@ -117,7 +123,7 @@ PolicyBuilder.prototype.radarCalculation = function (item) {
         var slider = document.getElementById(this.criteria[count].sliderId);
 
         if (slider) {
-            var graduations = this.criteria[count].max + 1;
+            var graduations = this.criteria[count].max;
             dataValues[count] = slider.value * 100 / graduations;
         }
 
@@ -155,36 +161,45 @@ PolicyBuilder.prototype.addRadar = function () {
                 pointBorderColor: "#fff",
                 pointHoverBackgroundColor: "#fff",
                 pointHoverBorderColor: "rgba(18,170,235,1)",
-                data: dataValues
+                data: dataValues,
+                fontSize: 12
         }
     ]
     };
 
 
     var polar = document.createElement('canvas');
-    polar.height = 500;
-    polar.width = 500;
+    polar.height = 400;
+    polar.width = 400;
 
     var watson = document.getElementById('watson');
     watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Hide Watson Tradeoffs'
 
     var radar = document.getElementById('radar');
-    radar.style.height = '600px';
-    radar.style.width = '600px';
+    radar.style.height = '500px';
+    radar.style.width = '500px';
     radar.innerHTML = '';
 
     radar.appendChild(polar);
 
-    var ctx = polar.getContext("2d");
+    var ctx = polar.getContext("2d")
+
+    Chart.defaults.global.defaultFontColor = '#225282';
+    Chart.defaults.global.defaultFontSize = 14;
 
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: data,
         options: {
+            pointLabel: {
+                fontSize: 14
+            },
             scale: {
                 ticks: {
                     beginAtZero: true,
-                    max: 100
+                    max: 100,
+                    maxTicksLimit: 5,
+                    backdropPaddingX: 5
                 }
             }
         }
@@ -206,7 +221,7 @@ PolicyBuilder.prototype.sliderChange = function (element) {
 
     pb.send();
 
-    //    pb.addRadar();
+    pb.addRadar();
 }
 
 
@@ -324,49 +339,52 @@ PolicyBuilder.prototype.getSliderData = function (element) {
  */
 
 PolicyBuilder.prototype.constructPostData = function () {
-    var parameters = {
-        "tripDuration": 5,
-        "addTravelers": [18, 9],
-        "cancelCov": false,
-        "tripCost": 5000
-    };
+    var parameters = {};
 
     pb = this;
 
     var durationData = pb.getSliderData(pb.DURATION)
 
-    if (durationData) {
+    if (durationData !== null) {
         parameters.tripDuration = durationData;
     }
 
     var costData = pb.getSliderData(pb.COST)
-    if (costData) {
-        parameters.tripCost = costData;
+    if (costData !== null) {
+        parameters.policyCost = costData;
+    }
+
+    var valueData = pb.getSliderData(pb.VALUE)
+    if (valueData !== null) {
+        parameters.tripCost = valueData;
     }
 
     var reviewData = pb.getSliderData(pb.REVIEWS)
-    if (reviewData) {
-        parameters.tripCost = reviewData;
+    if (reviewData !== null) {
+        parameters.reviews = reviewData;
     }
 
     var cancelData = pb.getSliderData(pb.CANCELLATION)
-    if (cancelData) {
-        parameters.tripCost = cancelData;
+    if (cancelData !== null) {
+        parameters.refund = cancelData;
     }
 
     var peopleData = document.getElementById(this.criteria[this.PEOPLE].sliderId);
 
-    if (peopleData) {
+    if (peopleData !== null) {
 
         var count = this.criteria[this.PEOPLE].input[peopleData.value]
 
         var travelers = [];
 
-        for (var c = 0; c < count; c++) {
+
+        for (var c = 1; c < count; c++) {
             travelers.push(18);
         }
 
-        parameters.addTravelers = travelers;
+        if (count > 1) {
+            parameters.addTravelers = travelers;
+        }
     }
 
     console.log(parameters);
