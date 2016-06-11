@@ -147,7 +147,7 @@ PolicyBuilder.prototype.addRadar = function () {
        of each element */
 
     var dataValues = this.radarCalculation();
-
+    console.log('Raw radar data:');
     console.log(dataValues);
 
     var data = {
@@ -386,6 +386,7 @@ PolicyBuilder.prototype.constructPostData = function () {
             parameters.addTravelers = travelers;
         }
     }
+    console.log('Data sent to TA:');
 
     console.log(parameters);
 
@@ -416,7 +417,7 @@ PolicyBuilder.prototype.send = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
                 var data = JSON.parse(xmlhttp.responseText);
-
+                console.log('Data received from TA:');
                 console.log(data);
 
                 var anchor = document.getElementById('policies');
@@ -424,6 +425,7 @@ PolicyBuilder.prototype.send = function () {
                 var options = data.policies;
                 anchor.innerHTML = '';
 
+                console.log('Policies received from TA:');
                 console.log(options);
 
                 options.forEach(function (option) {
