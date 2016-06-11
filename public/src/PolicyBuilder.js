@@ -141,7 +141,7 @@ PolicyBuilder.prototype.hideRadar = function () {
     radar.innerHTML = '';
 }
 
-PolicyBuilder.prototype.addRadar = function () {
+PolicyBuilder.prototype.addRadar = function (comparison) {
 
     /* Premise - the web = 100% coverage, so calculate the percentagage
        of each element */
@@ -150,23 +150,59 @@ PolicyBuilder.prototype.addRadar = function () {
     console.log('Raw radar data:');
     console.log(dataValues);
 
-    var data = {
-        labels: ["Duration", "Reviews", "People", "Cost", "Cancelation", "Value"],
-        datasets: [
-            {
-                label: "Insurance Coverage",
-                backgroundColor: "rgba(18,170,235,0.3)",
-                borderColor: "rgba(18,170,235,1)",
-                pointBackgroundColor: "rgba(18,170,235,1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(18,170,235,1)",
-                data: dataValues,
-                fontSize: 12
-        }
-    ]
+
+
+    var selectionSet = {
+        label: "Your Criteria",
+        backgroundColor: "rgba(179,181,198,0.2)",
+        borderColor: "rgba(179,181,198,1)",
+        pointBackgroundColor: "rgba(179,181,198,1)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgba(179,181,198,1)",
+        data: dataValues,
+        fontSize: 12
     };
 
+    var datasets = [selectionSet];
+
+    if (comparison) {
+        console.log(comparison);
+
+        var compare = [];
+        compare[0] = selectionSet.data[0];
+        compare[1] = selectionSet.data[1];
+        compare[2] = comparison.review * 20;
+        compare[3] = Math.round(100 / 1000 * comparison.cost);
+        compare[4] = comparison.cancelRefund;
+
+        var valueCovered = Math.round(100 / 10000 * comparison.coverage);
+
+        if (valueCovered > 10000) {
+            valueCovered = 10000;
+        }
+
+        compare[5] = valueCovered;
+
+        var comparisonData = {
+            label: comparison.name,
+            backgroundColor: "rgba(18,170,235,0.3)",
+            borderColor: "rgba(18,170,235,1)",
+            pointBackgroundColor: "rgba(18,170,235,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(18,170,235,1)",
+            data: compare,
+            fontSize: 12
+        }
+
+        datasets = [selectionSet, comparisonData];
+    }
+
+    var data = {
+        labels: ["Duration", "Travelers", "Reviews", "Cost", "Cancelation", "Value"],
+        datasets: datasets
+    };
 
     var polar = document.createElement('canvas');
     polar.height = 400;
@@ -273,7 +309,7 @@ PolicyBuilder.prototype.addStars = function (option) {
 
     var stars = '<div class="policyRating">';
 
-    var amount = option.levelCare;
+    var amount = option.review;
 
     for (count = 0; count < amount; count++) {
         stars = stars + '<img class="starImage" src="images/wash/star.svg">'
@@ -297,12 +333,20 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
 
         '<div class="policyDetails">' +
 
+        '<div class="policyRating">' +
+        '<div class="policyDescription">' + option.desc + '</div></div>' +
+
+
         '<div class = "policyData" > ' +
         '<label class="policyLabel">Coverage</label><span class="policyContent">$' + option.coverage + '</span>' +
         '</div>' +
 
         '<div class="policyData">' +
         '<label class="policyLabel">Cost</label><span class="policyContent">$' + option.cost + '</span>' +
+        '</div>' +
+
+        '<div class="policyData">' +
+        '<label class="policyLabel">Refund</label><span class="policyContent">' + option.cancelRefund + '%</span>' +
         '</div>';
 
     structure = structure + this.addStars(option);
@@ -316,6 +360,15 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
         '</div> '
 
     policyFeedback.innerHTML = structure;
+
+    var pb = this;
+
+    policyFeedback.onclick = function () {
+
+        pb.addRadar(option);
+
+        console.log(option);
+    };
 
     return policyFeedback;
 }

@@ -771,19 +771,56 @@ footer {}
 }
 .policyData {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: center;
-    margin: 4px;
+    /* margin: 4px; */
+    
+    border: 1px solid #8ad3f3;
+    border-top: none;
+    min-width: 180px;
+    height: 40px;
+}
+.policyDescription {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    height: 28px;
+    padding: 5px;
+    border-bottom: 1px solid #8ad3f3;
+}
+.policyRating {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
 }
 .policyLabel {
     margin: 5px;
     font-size: 14px;
+    min-width: 80px;
+    height: 40px;
+    display: flex;
+    border-right: 1px solid #8ad3f3;
+    flex-direction: row;
+    align-items: center;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
 }
 .policyContent {
-    font-weight: bold;
     font-size: 16px;
+    min-width: 70px;
+    margin-right: 10px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 .buyPolicy {
     width: 100%;
@@ -795,10 +832,10 @@ footer {}
     justify-content: center;
     font-size: 14px;
     font-weight: bold;
+    background: #e7f6fd;
 }
 .starImage {
     height: 24px;
-    margin-top: 10px;
 }
 .guidance {
     height: 40px;
