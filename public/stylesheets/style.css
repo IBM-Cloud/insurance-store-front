@@ -688,9 +688,9 @@ footer {}
     justify-content: center;
     align-self: center;
     font-size: 14px;
-    height: 320px;
-    max-height: 320px;
-    min-width: 260px;
+    height: 600px;
+    max-height: 600px;
+    min-width: 600px;
     margin-top: 10px;
     border-radius: 4px;
     color: #597a96;

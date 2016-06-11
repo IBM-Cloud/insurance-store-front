@@ -6,8 +6,8 @@ PolicyBuilder.prototype.selectedCriteria = [];
 
 PolicyBuilder.prototype.MINCATEGORY = 0;
 PolicyBuilder.prototype.DURATION = 0;
-PolicyBuilder.prototype.REVIEWS = 1;
-PolicyBuilder.prototype.PEOPLE = 2;
+PolicyBuilder.prototype.PEOPLE = 1;
+PolicyBuilder.prototype.REVIEWS = 2;
 PolicyBuilder.prototype.COST = 3;
 PolicyBuilder.prototype.CANCELLATION = 4;
 PolicyBuilder.prototype.VALUE = 5;
@@ -82,16 +82,7 @@ PolicyBuilder.prototype.addCriteria = function () {
 
         pb.criteria = data;
 
-        pb.criteria.forEach(function (c) {
-
-            if (c.type === "Optional") {
-                var element = pb.makeCritria(c.label, c.image);
-                elements.appendChild(element);
-            }
-        })
-
-        var processButton = document.getElementById('process');
-        processButton.disabled = true;
+        pb.process();
     });
 }
 
@@ -171,15 +162,15 @@ PolicyBuilder.prototype.addRadar = function () {
 
 
     var polar = document.createElement('canvas');
-    polar.height = 280;
-    polar.width = 280;
+    polar.height = 500;
+    polar.width = 500;
 
     var watson = document.getElementById('watson');
     watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Hide Watson Tradeoffs'
 
     var radar = document.getElementById('radar');
-    radar.style.height = '320px';
-    radar.style.width = '320px';
+    radar.style.height = '600px';
+    radar.style.width = '600px';
     radar.innerHTML = '';
 
     radar.appendChild(polar);
@@ -240,24 +231,26 @@ PolicyBuilder.prototype.process = function () {
         }
     })
 
-    pb.selectedCriteria.forEach(function (criteria) {
+    //    pb.selectedCriteria.forEach(function (criteria) {
 
-        pb.criteria.forEach(function (data) {
+    pb.criteria.forEach(function (data) {
 
-            if (data.label === criteria) {
+        //            if (data.label === criteria) {
 
-                var evaluation = pb.makeEvaluation(data);
-                filter.appendChild(evaluation);
+        var evaluation = pb.makeEvaluation(data);
+        filter.appendChild(evaluation);
 
-                var slider = document.getElementById(data.label + 'Slider');
-                slider.addEventListener('change', function () {
-                    pb.sliderChange(data.label);
-                }, false);
-            }
-        });
-    })
+        var slider = document.getElementById(data.label + 'Slider');
+        slider.addEventListener('change', function () {
+            pb.sliderChange(data.label);
+        }, false);
+        //            }
+    });
+    //    })
     var output = document.getElementById('results');
     output.style.display = 'flex';
+
+    pb.send();
 }
 
 
