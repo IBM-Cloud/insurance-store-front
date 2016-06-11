@@ -137,7 +137,7 @@ PolicyBuilder.prototype.radarCalculation = function (item) {
 
 PolicyBuilder.prototype.hideRadar = function () {
     var watson = document.getElementById('watson');
-    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Show Watson Tradeoffs'
+    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">View Watson Tradeoffs'
     var radar = document.getElementById('radar');
     radar.style.height = '0';
     radar.style.width = '320px';
@@ -394,7 +394,7 @@ PolicyBuilder.prototype.send = function () {
 
     var anchor = document.getElementById('policies');
     anchor.innerHTML = '';
-    anchor.innerHTML = '<img src="./images/loading.svg">';
+    anchor.innerHTML = '<img class="loading" src="./images/loading.svg">';
 
     setTimeout(function () {
         xmlhttp = new XMLHttpRequest();

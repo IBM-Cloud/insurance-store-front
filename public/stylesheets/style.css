@@ -80,7 +80,7 @@ a {
 .menu {
     font-size: 14px;
     font-weight: 500;
-    margin-right: 20px;
+    margin-left: 10px;
 }
 
 .fb {}
@@ -123,6 +123,10 @@ a {
 }
 .welcomeText span {
     color: #c8e7e0;
+}
+.loading {
+    margin: 30px;
+    height: 300px;
 }
 .carInsurance {
     margin-bottom: 100px;
@@ -534,7 +538,7 @@ footer {}
     outline: none;
     visibility: visible;
     opacity: 1;
-    transition: opacity 2s linear;
+    transition: opacity 1s linear;
     font-weight: bold;
 }
 .question {
@@ -799,7 +803,7 @@ footer {}
 .guidance {
     height: 40px;
     margin: 40px;
-    width: 740px;
+    width: 720px;
     margin-bottom: 0;
     border-radius: 4px;
     color: #597a96;
@@ -810,7 +814,7 @@ footer {}
     text-transform: uppercase;
     justify-content: space-around;
     align-items: center;
-    background: #f5fbfe;
+    background: #e7f6fd;
     font-size: 14px;
 }
 .resultsBar {
@@ -826,7 +830,7 @@ footer {}
     text-transform: uppercase;
     justify-content: space-between;
     align-items: center;
-    background: #f5fbfe;
+    background: #e7f6fd;
     font-size: 14px;
 }
 .watson {
@@ -846,8 +850,20 @@ footer {}
     margin-right: 20px;
     color: #225282;
     font-weight: bold;
+    min-width: 210px;
 }
 .glasses {
     height: 11px;
+    min-width: 30px;
     margin-right: 10px;
+}
+.radarContainer {
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #e7f6fd;
 }
