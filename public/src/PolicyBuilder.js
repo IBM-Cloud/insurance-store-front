@@ -265,7 +265,7 @@ PolicyBuilder.prototype.addStars = function (option) {
 
     var stars = '<div class="policyRating">';
 
-    var amount = option.values['levelCare'];
+    var amount = option.levelCare;
 
     for (count = 0; count < amount; count++) {
         stars = stars + '<img class="starImage" src="images/wash/star.svg">'
@@ -290,11 +290,11 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
         '<div class="policyDetails">' +
 
         '<div class = "policyData" > ' +
-        '<label class="policyLabel">Coverage</label><span class="policyContent">$' + option.values['amount'] + '</span>' +
+        '<label class="policyLabel">Coverage</label><span class="policyContent">$' + option.coverage + '</span>' +
         '</div>' +
 
         '<div class="policyData">' +
-        '<label class="policyLabel">Cost</label><span class="policyContent">$' + option.values['cost'] + '</span>' +
+        '<label class="policyLabel">Cost</label><span class="policyContent">$' + option.cost + '</span>' +
         '</div>';
 
     structure = structure + this.addStars(option);
@@ -410,7 +410,7 @@ PolicyBuilder.prototype.send = function () {
 
                 var anchor = document.getElementById('policies');
 
-                var options = data.problem.options;
+                var options = data.policies;
                 anchor.innerHTML = '';
 
                 console.log(options);
