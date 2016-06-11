@@ -153,13 +153,13 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
 
 
     var selectionSet = {
-        label: "Your Criteria",
-        backgroundColor: "rgba(179,181,198,0.2)",
-        borderColor: "rgba(179,181,198,1)",
-        pointBackgroundColor: "rgba(179,181,198,1)",
+        label: "Selected Criteria",
+        backgroundColor: "rgba(247,127,29,0.3)",
+        borderColor: "rgba(247,127,29,1)",
+        pointBackgroundColor: "rgba(247,127,29,1)",
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(179,181,198,1)",
+        pointHoverBorderColor: "rgba(247,127,29,1)",
         data: dataValues,
         fontSize: 12
     };
@@ -168,6 +168,9 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
 
     if (comparison) {
         console.log(comparison);
+
+        /*  This should be data driven - need to think about the relationship 
+            to the data model  */
 
         var compare = [];
         compare[0] = selectionSet.data[0];
@@ -185,7 +188,7 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
         compare[5] = valueCovered;
 
         var comparisonData = {
-            label: comparison.name,
+            label: comparison.name + ' Policy',
             backgroundColor: "rgba(18,170,235,0.3)",
             borderColor: "rgba(18,170,235,1)",
             pointBackgroundColor: "rgba(18,170,235,1)",
@@ -221,14 +224,17 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
     var ctx = polar.getContext("2d")
 
     Chart.defaults.global.defaultFontColor = '#225282';
-    Chart.defaults.global.defaultFontSize = 14;
+    Chart.defaults.global.defaultFontSize = 12;
 
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: data,
         options: {
             pointLabel: {
-                fontSize: 14
+                fontSize: 30
+            },
+            labels: {
+                fontSize: 20
             },
             scale: {
                 ticks: {
@@ -257,7 +263,9 @@ PolicyBuilder.prototype.sliderChange = function (element) {
 
     pb.send();
 
-    pb.addRadar();
+    if (builder.radarStatus === true) {
+        pb.addRadar();
+    }
 }
 
 
@@ -336,7 +344,6 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
         '<div class="policyRating">' +
         '<div class="policyDescription">' + option.desc + '</div></div>' +
 
-
         '<div class = "policyData" > ' +
         '<label class="policyLabel">Coverage</label><span class="policyContent">$' + option.coverage + '</span>' +
         '</div>' +
@@ -364,10 +371,9 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
     var pb = this;
 
     policyFeedback.onclick = function () {
-
-        pb.addRadar(option);
-
-        console.log(option);
+        if (pb.radarStatus === true) {
+            pb.addRadar(option);
+        }
     };
 
     return policyFeedback;
@@ -385,7 +391,6 @@ PolicyBuilder.prototype.getSliderData = function (element) {
 
     return value;
 }
-
 
 /**
  * Builds parameters for sending to the server
