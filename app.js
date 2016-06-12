@@ -1,3 +1,4 @@
+/*eslint-env express, node*/
 var express   	= require('express'),
 	  app         = express(),
 		bodyParser 	= require('body-parser'),
@@ -23,16 +24,14 @@ else {
 var domainPrefix = appName.substr(0, appName.indexOf("insurance") + 10);
 var catalog_url = constructApiRoute(domainPrefix, "catalog"),
 		orders_url = constructApiRoute(domainPrefix, "orders");
-
+		
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
 
-app.post('/api/tradeoff', function(req, res, next) {
-	return makePostRequest(req, body, catalog_url + '/tradeoff', res);
-});
+
 
 /**
  * Constructs a URL for an insurance microservice
@@ -44,9 +43,7 @@ function constructApiRoute(prefix, suffix) {
 /**
  * Makes an HTTP POST request given options and the initial response object
  */
- // app.post('/api/tradeoff', function(req, res, next) {
- // 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
- // });
+
 function makePostRequest(payload, url, res) {
 	var options = {
 	  body: payload,
@@ -61,3 +58,7 @@ function makePostRequest(payload, url, res) {
       return res.json(response.body);
 	});
 }
+
+ // app.post('/api/tradeoff', function(req, res, next) {
+ // 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
+ // });
