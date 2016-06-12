@@ -32,12 +32,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 // Request handler proxy for Tradeoff Analytics calculations
 // Invokes the evaluate() function in the insurance-catalog service
 app.post('/api/tradeoff', function(req, res, next) {
-	var options = {
-	  body: req.body,
-	  json: true,
-	  url: catalog_url + '/tradeoff'
-	};
-	return makePostRequest(options, res);
+	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
 });
 
 /**
@@ -50,7 +45,13 @@ function constructApiRoute(prefix, suffix) {
 /**
  * Makes an HTTP POST request given options and the initial response object
  */
-function makePostRequest(options, res) {
+function makePostRequest(payload, url, res) {
+	var options = {
+	  body: payload,
+	  json: true,
+	  url: url
+	};
+
 	request.post(options, function (err, response) {
 	  if (err)
       return res.json(err);
