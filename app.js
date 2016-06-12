@@ -19,6 +19,10 @@ if (appEnv.isLocal) {
 else {
 	appName = JSON.parse(process.env.VCAP_APPLICATION).name;
 }
+// app.post('/api/tradeoff', function(req, res, next) {
+// 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
+// });
+
 var domainPrefix = appName.substr(0, appName.indexOf("insurance") + 10);
 var catalog_url = constructApiRoute(domainPrefix, "catalog"),
 		orders_url = constructApiRoute(domainPrefix, "orders");
@@ -27,12 +31,6 @@ var catalog_url = constructApiRoute(domainPrefix, "catalog"),
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
-});
-
-// Request handler proxy for Tradeoff Analytics calculations
-// Invokes the evaluate() function in the insurance-catalog service
-app.post('/api/tradeoff', function(req, res, next) {
-	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
 });
 
 /**
