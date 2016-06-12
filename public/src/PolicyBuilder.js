@@ -134,7 +134,7 @@ PolicyBuilder.prototype.radarCalculation = function (item) {
 
 PolicyBuilder.prototype.hideRadar = function () {
     var watson = document.getElementById('watson');
-    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">View Watson Tradeoffs'
+    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">View Watson Tradeoffs';
     var radar = document.getElementById('radar');
     radar.style.height = '0';
     radar.style.width = '320px';
@@ -466,6 +466,10 @@ PolicyBuilder.prototype.send = function () {
     anchor.innerHTML = '';
     anchor.innerHTML = '<img class="loading" src="./images/loading.svg">';
 
+    // Hide the 'View Watson Tradeoffs' button
+    var radarButton = document.getElementById('watson');
+    radarButton.style.display = 'none';
+
     setTimeout(function () {
         xmlhttp = new XMLHttpRequest();
         var url = "/api/tradeoff";
@@ -482,6 +486,7 @@ PolicyBuilder.prototype.send = function () {
 
                 var options = data.policies;
                 anchor.innerHTML = '';
+                radarButton.style.display = 'flex';
 
                 console.log('Policies received from TA:');
                 console.log(options);

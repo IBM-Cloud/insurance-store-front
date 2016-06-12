@@ -96,13 +96,6 @@ a {
     text-align: center;
 }
 
-
-}
-.quote {
-    margin: 20px;
-    color: #225282;
-    font-weight: bold;
-}
 .plan {
     font-size: 12px;
     margin: 20px;
@@ -541,6 +534,9 @@ footer {}
     transition: opacity 1s linear;
     font-weight: bold;
 }
+.quote:hover {
+    cursor: pointer
+}
 .question {
     font-size: 18px;
     margin: 20px;
@@ -872,7 +868,7 @@ footer {}
 }
 .watson {
     cursor: pointer;
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     align-content: center;
