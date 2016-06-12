@@ -19,9 +19,6 @@ if (appEnv.isLocal) {
 else {
 	appName = JSON.parse(process.env.VCAP_APPLICATION).name;
 }
-// app.post('/api/tradeoff', function(req, res, next) {
-// 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
-// });
 
 var domainPrefix = appName.substr(0, appName.indexOf("insurance") + 10);
 var catalog_url = constructApiRoute(domainPrefix, "catalog"),
@@ -33,9 +30,6 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
-app.post('/api/tradeoff', function(req, res, next){
-	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
-});
 
 
 /**
@@ -48,6 +42,9 @@ function constructApiRoute(prefix, suffix) {
 /**
  * Makes an HTTP POST request given options and the initial response object
  */
+ // app.post('/api/tradeoff', function(req, res, next) {
+ // 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
+ // });
 function makePostRequest(payload, url, res) {
 	var options = {
 	  body: payload,
@@ -58,7 +55,7 @@ function makePostRequest(payload, url, res) {
 	request.post(options, function (err, response) {
 	  if (err)
       return res.json(err);
-    else 
+    else
       return res.json(response.body);
 	});
 }
