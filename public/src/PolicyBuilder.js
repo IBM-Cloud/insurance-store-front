@@ -4,7 +4,6 @@ var PolicyBuilder = function () {
 
 PolicyBuilder.prototype.selectedCriteria = [];
 
-PolicyBuilder.prototype.MINCATEGORY = 0;
 PolicyBuilder.prototype.DURATION = 0;
 PolicyBuilder.prototype.PEOPLE = 1;
 PolicyBuilder.prototype.REVIEWS = 2;
@@ -17,10 +16,22 @@ PolicyBuilder.prototype.criteria = [];
 
 PolicyBuilder.prototype.radarStatus = false;
 
+// Radar values
+PolicyBuilder.prototype.MINCATEGORY = 0;
+PolicyBuilder.prototype.RADAR_COST = 0;
+PolicyBuilder.prototype.RADAR_LEVELCARE = 1;
+PolicyBuilder.prototype.RADAR_COVERAGE = 2;
+PolicyBuilder.prototype.RADAR_CANCELLATION = 3;
+PolicyBuilder.prototype.RADAR_REVIEW = 4;
+PolicyBuilder.prototype.MAXCATEGORY = 5;
+PolicyBuilder.prototype.columns = [];
+PolicyBuilder.prototype.policies = [];
+PolicyBuilder.prototype.radarColors = [[247, 127, 29], [18, 170, 235], [170, 235, 18], [235, 18, 170], [18, 61, 234], [152, 78, 0]];
+
+
 PolicyBuilder.prototype.selectCriteria = function (label) {
 
     var newSelections = [];
-
 
     var found = false;
 
@@ -114,19 +125,16 @@ PolicyBuilder.prototype.makeEvaluation = function (criteria) {
 }
 
 
-PolicyBuilder.prototype.radarCalculation = function (item) {
+PolicyBuilder.prototype.radarCalculation = function (policy) {
 
-    var dataValues = [10, 10, 10, 10, 10, 10];
-
+    var dataValues = [];
     for (var count = this.MINCATEGORY; count < this.MAXCATEGORY; count++) {
 
-        var slider = document.getElementById(this.criteria[count].sliderId);
+        var critRange = this.columns[count].range;
+        var policyValue = getPolicyValue(policy, count);
 
-        if (slider) {
-            var graduations = this.criteria[count].max;
-            dataValues[count] = slider.value * 100 / graduations;
-        }
-
+        if (critRange && policyValue)
+            dataValues[count] = Math.round((policyValue / critRange.high) * 100);
     }
 
     return dataValues;
@@ -141,69 +149,36 @@ PolicyBuilder.prototype.hideRadar = function () {
     radar.innerHTML = '';
 }
 
-PolicyBuilder.prototype.addRadar = function (comparison) {
+PolicyBuilder.prototype.addRadar = function () {
 
-    /* Premise - the web = 100% coverage, so calculate the percentagage
-       of each element */
-
-    var dataValues = this.radarCalculation();
-    console.log('Raw radar data:');
-    console.log(dataValues);
-
-
-
-    var selectionSet = {
-        label: "Selected Criteria",
-        backgroundColor: "rgba(247,127,29,0.3)",
-        borderColor: "rgba(247,127,29,1)",
-        pointBackgroundColor: "rgba(247,127,29,1)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(247,127,29,1)",
-        data: dataValues,
-        fontSize: 12
-    };
-
-    var datasets = [selectionSet];
-
-    if (comparison) {
-        console.log(comparison);
-
-        /*  This should be data driven - need to think about the relationship 
-            to the data model  */
-
-        var compare = [];
-        compare[0] = selectionSet.data[0];
-        compare[1] = selectionSet.data[1];
-        compare[2] = comparison.review * 20;
-        compare[3] = Math.round(100 / 1000 * comparison.cost);
-        compare[4] = comparison.cancelRefund;
-
-        var valueCovered = Math.round(100 / 10000 * comparison.coverage);
-
-        if (valueCovered > 10000) {
-            valueCovered = 10000;
+    // Loop through all elements representing the preturned policies
+    var datasets = [],
+        compareCount = 0,
+        dataValues, selectionSet;
+    var policies = document.getElementById('policies').children;
+    for (var i=0; i < policies.length; i++) {
+        // If the policy is marked for comparison
+        if (policies[i].dataset.compare === "Y") {
+            // Get policy values and add to the total data set
+            dataValues = this.radarCalculation(this.policies[i]);
+            selectionSet = {
+                label: this.policies[i].name,
+                backgroundColor: this.getRadarColors(compareCount, true),
+                borderColor: this.getRadarColors(compareCount, false),
+                pointBackgroundColor: this.getRadarColors(compareCount, false),
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: this.getRadarColors(compareCount, false),
+                data: dataValues,
+                fontSize: 12
+            };
+            datasets.push(selectionSet);
+            compareCount++;
         }
-
-        compare[5] = valueCovered;
-
-        var comparisonData = {
-            label: comparison.name + ' Policy',
-            backgroundColor: "rgba(18,170,235,0.3)",
-            borderColor: "rgba(18,170,235,1)",
-            pointBackgroundColor: "rgba(18,170,235,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(18,170,235,1)",
-            data: compare,
-            fontSize: 12
-        }
-
-        datasets = [selectionSet, comparisonData];
     }
 
     var data = {
-        labels: ["Duration", "Travelers", "Reviews", "Cost", "Cancelation", "Value"],
+        labels: ["Policy Cost", "Level of Care", "Coverage Amount", "Refund Amount", "Reviews"],
         datasets: datasets
     };
 
@@ -212,7 +187,7 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
     polar.width = 400;
 
     var watson = document.getElementById('watson');
-    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Hide Watson Tradeoffs'
+    watson.innerHTML = '<img class="glasses" src="images/wash/glasses.svg">Hide Watson Tradeoffs';
 
     var radar = document.getElementById('radar');
     radar.style.height = '500px';
@@ -221,7 +196,7 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
 
     radar.appendChild(polar);
 
-    var ctx = polar.getContext("2d")
+    var ctx = polar.getContext("2d");
 
     Chart.defaults.global.defaultFontColor = '#225282';
     Chart.defaults.global.defaultFontSize = 12;
@@ -246,6 +221,12 @@ PolicyBuilder.prototype.addRadar = function (comparison) {
             }
         }
     })
+}
+
+PolicyBuilder.prototype.getRadarColors = function (index, isTransparent) {
+    var radarColor = this.radarColors[index % this.radarColors.length],
+        alpha = (isTransparent) ? ".3" : 1;
+    return "rgba(" + radarColor[0] + "," + radarColor[1] + "," + radarColor[2] + "," + alpha + ")";
 }
 
 PolicyBuilder.prototype.sliderChange = function (element) {
@@ -329,13 +310,14 @@ PolicyBuilder.prototype.addStars = function (option) {
 
 
 PolicyBuilder.prototype.buildFeedback = function (option) {
-
     var policyFeedback = document.createElement('div');
     policyFeedback.className = 'policyFeedback';
+    policyFeedback.id = option.id;
+    policyFeedback.dataset.compare = "N";
 
     var structure =
 
-        '<div class="policyTitle">' +
+        '<div class="policyTitle" id="' + option.id + '-title" onclick="togglePolicyComparison(\'' + option.id + '\')">' +
         '<div class="policyName">' + option.name + '</div>' +
         '</div>' +
 
@@ -364,17 +346,12 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
 
         '<div class = "policyAction">' +
         '<div class = "buyPolicy" onclick = "openWatson()"> Buy now </div>' +
-        '</div> '
+        '</div> ';
 
     policyFeedback.innerHTML = structure;
 
-    var pb = this;
-
-    policyFeedback.onclick = function () {
-        if (pb.radarStatus === true) {
-            pb.addRadar(option);
-        }
-    };
+    // Add option to global policy list
+    this.policies.push(option);
 
     return policyFeedback;
 }
@@ -484,12 +461,13 @@ PolicyBuilder.prototype.send = function () {
 
                 var anchor = document.getElementById('policies');
 
+                // Reset global vars to be replaced by new results
+                pb.columns = data.columns;
+                pb.policies = [];
+
                 var options = data.policies;
                 anchor.innerHTML = '';
                 radarButton.style.display = 'flex';
-
-                console.log('Policies received from TA:');
-                console.log(options);
 
                 options.forEach(function (option) {
                     var element = pb.buildFeedback(option);
@@ -536,6 +514,49 @@ function toggleRadar() {
         builder.hideRadar();
         builder.radarStatus = false;
     }
+}
+
+function updatePolicyElement(el, elTitle, compareToggle, backgroundColor, color) {
+    el.dataset.compare = compareToggle;
+    elTitle.style.backgroundColor = backgroundColor;
+    elTitle.style.color = color;
+}
+
+function togglePolicyComparison(policyId) {
+
+    var policy = document.getElementById(policyId),
+        policyTitle = document.getElementById(policyId + "-title");
+    if (policy.dataset.compare === "N")
+        updatePolicyElement(policy, policyTitle, "Y", "#225282", "#ffffff");
+    else
+        updatePolicyElement(policy, policyTitle, "N", "#8ad3f3", "#225282");
+
+    if (builder.radarStatus === true) {
+        builder.addRadar();
+    }
+}
+
+function getPolicyValue(policy, criteria) {
+    var policyValue;
+    switch(criteria) {
+        case 0:
+            policyValue = policy.cost;
+            break;
+        case 1:
+            policyValue = policy.levelCare;
+            break;
+        case 2:
+            policyValue = policy.coverage;
+            break;
+        case 3:
+            policyValue = policy.cancelRefund;
+            break;
+        case 4:
+            policyValue = policy.review;
+            break;
+    }
+
+    return policyValue;
 }
 
 window.onload = builder.addCriteria();
