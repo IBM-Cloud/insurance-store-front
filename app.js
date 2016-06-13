@@ -33,12 +33,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 
 
-/**
- * Constructs a URL for an insurance microservice
- */
-function constructApiRoute(prefix, suffix) {
-	return "https://" + prefix + suffix + ".mybluemix.net";
-}
+
 
 /**
  * Makes an HTTP POST request given options and the initial response object
@@ -57,6 +52,13 @@ function makePostRequest(payload, url, res) {
     else
       return res.json(response.body);
 	});
+}
+
+/**
+ * Constructs a URL for an insurance microservice
+ */
+function constructApiRoute(prefix, suffix) {
+	return "https://" + prefix + suffix + ".mybluemix.net";
 }
 
  // app.post('/api/tradeoff', function(req, res, next) {
