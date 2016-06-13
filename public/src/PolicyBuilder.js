@@ -444,6 +444,8 @@ PolicyBuilder.prototype.send = function () {
     anchor.innerHTML = '<img class="loading" src="./images/loading.svg">';
 
     // Hide the 'View Watson Tradeoffs' button
+    if (pb.radarStatus)
+        toggleRadar();
     var radarButton = document.getElementById('watson');
     radarButton.style.display = 'none';
 
