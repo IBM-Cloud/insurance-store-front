@@ -4,5 +4,5 @@ function openTravel() {
 }
 
 function openTravelPolicies() {
-    window.location = "form.html";
+    window.location = "watson.html";
 }
