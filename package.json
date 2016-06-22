@@ -1,7 +1,14 @@
 {
 	"name": "insurance-store-front",
-	"version": "0.0.1",
+	"version": "1.0.0",
   "description": "A Node.js app serving the front end of the insurance-store demo.",
+  "private": false,
+  "keywords": [
+    "bluemix",
+    "microservices",
+    "watson",
+    "tradeoff-analytics"
+  ],
 	"scripts": {
 		"start": "node app.js"
 	},
@@ -18,9 +25,22 @@
     "type": "git",
     "url": "https://github.com/IBM-Bluemix/insurance-store-front.git"
   },
+  "bugs": {
+    "url": "https://github.com/IBM-Bluemix/insurance-store-front/issues"
+  },
   "engines": {
     "node": "4.4.x"
   },
   "author": "IBM Corp.",
+  "contributors": [
+    {
+      "name": "Anton McConville",
+      "email": "anton.mcconville@ca.ibm.com"
+    },
+    {
+      "name": "Jake Peyser",
+      "email": "jepeyser@us.ibm.com"
+    }
+  ],
   "license": "Apache-2.0"
 }
