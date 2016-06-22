@@ -785,10 +785,13 @@ footer {}
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     font-size: 11px;
     height: 28px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
     padding: 5px;
+    width: 100%;
     border-bottom: 1px solid #8ad3f3;
 }
 .policyRating {
@@ -798,6 +801,7 @@ footer {}
     align-items: center;
     justify-content: center;
     height: 40px;
+    width: 100%;
 }
 .policyLabel {
     margin: 5px;
