@@ -1078,7 +1078,7 @@
         }
         .plan {
             font-size: 14px;
-            /* margin: 20px; */
+            margin: 0;
             padding: 20px;
             border-radius: 4px;
             color: #597a96;
