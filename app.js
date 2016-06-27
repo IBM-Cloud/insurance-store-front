@@ -31,9 +31,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
-app.post('/api/tradeoff', function(req, res, next){
-	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
-});
+
 
 /**
  * Makes an HTTP POST request given options and the initial response object
