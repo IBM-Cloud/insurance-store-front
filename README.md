@@ -1,4 +1,4 @@
-# insurance-catalog
+# insurance-store-front
 
 [![Build Status](https://travis-ci.org/IBM-Bluemix/insurance-store-front.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/insurance-store-front)
 
