@@ -846,6 +846,7 @@
     
     .policyAction {
         display: flex;
+        cursor: pointer;
         flex-direction: column;
         width: 180px;
         height: 50px;

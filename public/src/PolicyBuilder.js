@@ -1,6 +1,17 @@
+// Generate random, unique customer ID on page load
+function uuid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + s4() + s4();
+}
+var customerId = uuid();
+
 var PolicyBuilder = function () {
 
-}
+};
 
 PolicyBuilder.prototype.selectedCriteria = [];
 
@@ -345,7 +356,7 @@ PolicyBuilder.prototype.buildFeedback = function (option) {
         '</div>' +
 
         '<div class = "policyAction">' +
-        '<div class = "buyPolicy" onclick = "openWatson()"> Buy now </div>' +
+        '<div class = "buyPolicy" onclick="orderPolicy(\'' + option.id + '\')"> Buy now </div>' +
         '</div> ';
 
     policyFeedback.innerHTML = structure;
@@ -560,5 +571,36 @@ function getPolicyValue(policy, criteria) {
 
     return policyValue;
 }
+
+// Create an order for the current customer
+function orderPolicy(policyId) {
+
+    // Create order object
+    var order = {
+        "itemid": policyId,
+        "customerid": customerId,
+        "count": 1
+    };
+
+    // Build AJAX POST request
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/api/orders", true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4)
+            policyCreatedResponse(xmlhttp.status, xmlhttp.responseText);
+    };
+    xmlhttp.send(JSON.stringify(order));
+}
+
+var policyCreatedResponse = function(statusCode, response) {
+    var alertMessage = "";
+    if (statusCode == 200 && JSON.parse(response).msg === "Successfully created item")
+        alertMessage = "Policy order placed successfully";
+    else
+        alertMessage = "There was an error placing your policy order." +
+                       " Please try again later";
+    window.alert(alertMessage);
+};
 
 window.onload = builder.addCriteria();

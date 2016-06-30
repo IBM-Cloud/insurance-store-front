@@ -58,6 +58,13 @@ function makePostRequest(payload, url, res) {
 function constructApiRoute(prefix, suffix) {
 	return "https://" + prefix + suffix + ".mybluemix.net";
 }
- // app.post('/api/tradeoff', function(req, res, next) {
- // 	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
- // });
+
+// Allow clients to make policy tradeoff calculations
+app.post('/api/tradeoff', function(req, res, next) {
+	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
+});
+
+// Allow clients to create new policy orders
+app.post('/api/orders', function(req, res, next) {
+	return makePostRequest(req.body, orders_url + '/orders', res);
+});
