@@ -1,0 +1,16 @@
+{
+  "name": "insurance-store-front",
+  "version": "1.0.0",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/vendor",
+    "test",
+    "samples",
+    "docs"
+  ],
+  "dependencies": {
+    "Chart.js": "2.1.x"
+  }
+}

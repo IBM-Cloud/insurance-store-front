@@ -1,4 +1,6 @@
 node_modules/
+bower_components/
+public/vendor/
 .gitignore
 .git/
 *.DS_STORE

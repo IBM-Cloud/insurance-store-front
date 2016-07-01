@@ -57,7 +57,7 @@ And voila! You now have your very own instance of the Insurance Store Front runn
 4. Install the required npm and bower packages using the following command
 
   ```
-  npm install
+  sudo npm install --unsafe-perm
   ```
 
 7. Start your app locally with the following command
