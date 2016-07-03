@@ -699,7 +699,7 @@
         text-align: center;
         margin: 10px;
         margin-left: 20px;
-        margin-right: 0;
+        margin-right: 20px;
         font-size: 14px;
         font-weight: bold;
         letter-spacing: 1px;
@@ -740,6 +740,19 @@
         min-width: 90px;
         text-align: center;
         font-size: 12px;
+    }
+    
+    .slider-element {
+        display: flex;
+        flex-direction: row;
+        width: 360px;
+    }
+    
+    .criteria-element {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
     
     .output {
@@ -801,6 +814,20 @@
         color: #225282;
         font-weight: bold;
         border: 2px solid #12aaeb;
+    }
+    
+    .consideration-mobile {
+        min-width: 100px;
+        height: 36px;
+        flex-direction: row;
+        font-size: 13px;
+        align-items: center;
+        margin-left: 10px;
+        justify-content: center;
+        color: #225282;
+        font-weight: bold;
+        border: 2px solid #12aaeb;
+        display: none;
     }
     
     .policyFeedback {
@@ -1085,5 +1112,38 @@
             color: #597a96;
             width: 260px;
             border: 1px dashed #597a96;
+        }
+        .consideration-mobile {
+            display: flex;
+        }
+        .consideration {
+            display: none;
+        }
+        .evaluation {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e7f6fd;
+        }
+        .resultsBar {
+            flex-direction: column;
+            height: 80px;
+            margin: 0;
+            padding-bottom: 20px;
+        }
+        .watson {
+            margin-right: 0;
+        }
+        .output {
+            width: 400px;
+            align-items: center;
+        }
+        .results {
+            width: 400px;
+        }
+        .policies {
+            width: 320px;
+            min-width: 320px;
         }
     }

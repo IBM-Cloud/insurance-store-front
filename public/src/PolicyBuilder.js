@@ -1,11 +1,11 @@
 // Generate random, unique customer ID on page load
 function uuid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + s4() + s4();
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + s4() + s4();
 }
 var customerId = uuid();
 
@@ -126,11 +126,16 @@ PolicyBuilder.prototype.makeEvaluation = function (criteria) {
 
     evaluation.innerHTML =
 
+        '<div class="criteria-element">' +
         '<img src = "images/wash/' + criteria.image + '" class = "evaluation-image">' +
         '<label class = "criteria-label">' + criteria.label + '</label>' +
-        '<label class = "slider-label" >' + criteria.values[0] + '</label >' +
+        '<div class="consideration-mobile" id="' + criteria.label + 'Consideration' + '">' + criteria.values[0] + '</div>' +
+        '</div>' +
+        '<div class="slider-element">' +
+        '<label class = "slider-label">' + criteria.values[0] + '</label >' +
         '<input class = "slider" id = "' + sliderId + '" type = "range" min = "' + criteria.min + '"max = "' + criteria.max + '"step = "1" value ="' + sliderValue + '"/>' +
-        '<label class = "slider-label">' + criteria.values[criteria.max] + '</label>' + '<div class="consideration" id="' + criteria.label + 'Consideration' + '">' + criteria.values[0] + '</div>';
+        '<label class = "slider-label">' + criteria.values[criteria.max] + '</label>' + '</div>' +
+        '<div class="consideration" id="' + criteria.label + 'Consideration' + '">' + criteria.values[0] + '</div>';
 
     return evaluation;
 }
@@ -167,7 +172,7 @@ PolicyBuilder.prototype.addRadar = function () {
         compareCount = 0,
         dataValues, selectionSet;
     var policies = document.getElementById('policies').children;
-    for (var i=0; i < policies.length; i++) {
+    for (var i = 0; i < policies.length; i++) {
         // If the policy is marked for comparison
         if (policies[i].dataset.compare === "Y") {
             // Get policy values and add to the total data set
@@ -551,22 +556,22 @@ function togglePolicyComparison(policyId) {
 
 function getPolicyValue(policy, criteria) {
     var policyValue;
-    switch(criteria) {
-        case 0:
-            policyValue = policy.cost;
-            break;
-        case 1:
-            policyValue = policy.levelCare;
-            break;
-        case 2:
-            policyValue = policy.coverage;
-            break;
-        case 3:
-            policyValue = policy.cancelRefund;
-            break;
-        case 4:
-            policyValue = policy.review;
-            break;
+    switch (criteria) {
+    case 0:
+        policyValue = policy.cost;
+        break;
+    case 1:
+        policyValue = policy.levelCare;
+        break;
+    case 2:
+        policyValue = policy.coverage;
+        break;
+    case 3:
+        policyValue = policy.cancelRefund;
+        break;
+    case 4:
+        policyValue = policy.review;
+        break;
     }
 
     return policyValue;
@@ -593,13 +598,13 @@ function orderPolicy(policyId) {
     xmlhttp.send(JSON.stringify(order));
 }
 
-var policyCreatedResponse = function(statusCode, response) {
+var policyCreatedResponse = function (statusCode, response) {
     var alertMessage = "";
     if (statusCode == 200 && JSON.parse(response).msg === "Successfully created item")
         alertMessage = "Policy order placed successfully";
     else
         alertMessage = "There was an error placing your policy order." +
-                       " Please try again later";
+        " Please try again later";
     window.alert(alertMessage);
 };
 
