@@ -30,9 +30,9 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
-app.post('/api/tradeoff', function(req, res, next) {
-	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
-});
+
+
+
 
 
 /**
@@ -56,7 +56,14 @@ function makePostRequest(payload, url, res) {
 
 /**
  * Constructs a URL for an insurance microservice
+ * 
+ * 
  */
+
+//app.post('/api/tradeoff', function(req, res, next) {
+//	return makePostRequest(req.body, catalog_url + '/tradeoff', res);
+//})
+
 function constructApiRoute(prefix, suffix) {
 	return "https://" + prefix + suffix + ".mybluemix.net";
 }
